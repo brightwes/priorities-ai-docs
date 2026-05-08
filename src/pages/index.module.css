@@ -15,18 +15,18 @@
 }
 .heroH1 {
   font-family: 'Inter', sans-serif;
-  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-size: clamp(2rem, 4vw, 2.5rem);
   font-weight: 700;
   color: var(--ifm-heading-color);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   margin-bottom: 12px;
-  line-height: 1.2;
+  line-height: 1.15;
 }
 .heroSub {
-  font-size: 1.0625rem;
+  font-size: 1rem;
   color: var(--ifm-color-secondary-darkest, #555);
-  line-height: 1.6;
-  max-width: 560px;
+  line-height: 1.65;
+  max-width: 540px;
   margin: 0;
 }
 

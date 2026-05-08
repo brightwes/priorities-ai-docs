@@ -1,182 +1,204 @@
-@import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,600;1,300&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap');
 
-/* ── Light-mode tokens ────────────────────────────────────────────────── */
+/* ────────────────────────────────────────────────
+   Peak Priorities design tokens — light mode
+─────────────────────────────────────────────────── */
 :root {
-  /* Docusaurus primary (mustard) */
-  --ifm-color-primary:         #b8890f;
-  --ifm-color-primary-dark:    #a67b0d;
-  --ifm-color-primary-darker:  #9d740c;
-  --ifm-color-primary-darkest: #82600a;
-  --ifm-color-primary-light:   #ca970e;
-  --ifm-color-primary-lighter: #d3a012;
-  --ifm-color-primary-lightest: #d4a017;
+  /* Primary = mustard */
+  --ifm-color-primary:          #9A7010;
+  --ifm-color-primary-dark:     #8A6410;
+  --ifm-color-primary-darker:   #7E5B0E;
+  --ifm-color-primary-darkest:  #674A0B;
+  --ifm-color-primary-light:    #AA7C12;
+  --ifm-color-primary-lighter:  #BA8814;
+  --ifm-color-primary-lightest: #D4A017;
 
   /* Typography */
-  --ifm-font-family-base:       'Inter', sans-serif;
+  --ifm-font-family-base:       'Inter', system-ui, sans-serif;
   --ifm-font-family-monospace:  'JetBrains Mono', monospace;
-  --ifm-heading-font-family:    'Inter', sans-serif;
   --ifm-font-size-base:         15px;
   --ifm-line-height-base:       1.7;
+  --ifm-heading-font-family:    'Inter', system-ui, sans-serif;
+  --ifm-heading-font-weight:    700;
 
-  /* Backgrounds */
-  --ifm-background-color:       #ffffff;
-  --ifm-background-surface-color: #f8f9fb;
-  --ifm-navbar-background-color: #ffffff;
-  --ifm-footer-background-color: #f3f4f7;
+  /* Backgrounds — light, clean, like docs.stripe.com */
+  --ifm-background-color:            #ffffff;
+  --ifm-background-surface-color:    #f7f8fc;
+  --ifm-navbar-background-color:     #ffffff;
+  --ifm-footer-background-color:     #f7f8fc;
+
+  /* Borders */
+  --ifm-color-emphasis-200:    #e8eaf0;
+  --ifm-color-emphasis-300:    #dde0eb;
+  --ifm-hr-border-color:       #dde0eb;
+  --ifm-toc-border-color:      #dde0eb;
 
   /* Code */
-  --ifm-code-font-size:         0.875rem;
-  --ifm-code-border-radius:     5px;
-  --ifm-code-background:        #f0f2f6;
-  --docusaurus-highlighted-code-line-bg: rgba(212,160,23,0.12);
-
-  /* Border */
-  --ifm-color-emphasis-300:     #e4e7ed;
-  --ifm-hr-border-color:        #e4e7ed;
-
-  /* Table of contents */
-  --ifm-toc-border-color:       #e4e7ed;
+  --ifm-code-font-size:        0.875rem;
+  --ifm-code-border-radius:    4px;
+  --ifm-code-background:       #f0f2f8;
+  --docusaurus-highlighted-code-line-bg: rgba(212,160,23,0.1);
 
   /* Sidebar */
-  --ifm-sidebar-width:          280px;
-  --ifm-menu-color:             #4a5568;
-  --ifm-menu-color-active:      #b8890f;
+  --ifm-sidebar-width:         272px;
+  --ifm-menu-color:            #4a5568;
+  --ifm-menu-color-active:     #9A7010;
 
-  /* Brand palette for prose */
-  --color-mustard:   #D4A017;
-  --color-coral:     #C0533A;
-  --color-green:     #3A7D56;
-  --color-slate:     #3D4B6F;
+  /* Link */
+  --ifm-link-color:            #9A7010;
+  --ifm-link-hover-color:      #D4A017;
+
+  /* Brand tokens for prose */
+  --pp-mustard: #D4A017;
+  --pp-coral:   #C0533A;
+  --pp-green:   #3A7D56;
+  --pp-slate:   #3D4B6F;
+  --pp-mono:    'JetBrains Mono', monospace;
 }
 
-/* ── Dark-mode tokens ─────────────────────────────────────────────────── */
+/* ────────────────────────────────────────────────
+   Dark mode
+─────────────────────────────────────────────────── */
 [data-theme='dark'] {
-  --ifm-color-primary:         #D4A017;
-  --ifm-color-primary-dark:    #c09215;
-  --ifm-color-primary-darker:  #b68912;
-  --ifm-color-primary-darkest: #956f0f;
-  --ifm-color-primary-light:   #e8ae1a;
-  --ifm-color-primary-lighter: #ebb51d;
+  --ifm-color-primary:          #D4A017;
+  --ifm-color-primary-dark:     #c09215;
+  --ifm-color-primary-darker:   #b68912;
+  --ifm-color-primary-darkest:  #956f0f;
+  --ifm-color-primary-light:    #e8ae1a;
+  --ifm-color-primary-lighter:  #ebb51d;
   --ifm-color-primary-lightest: #f0bc25;
 
-  --ifm-background-color:          #0B0F19;
-  --ifm-background-surface-color:  #111827;
-  --ifm-navbar-background-color:   #0D1220;
-  --ifm-footer-background-color:   #0D1220;
-  --ifm-code-background:           #1a2234;
-  --ifm-color-emphasis-300:        #1A2234;
-  --ifm-hr-border-color:           #1A2234;
-  --ifm-toc-border-color:          #1A2234;
-  --ifm-menu-color:                #9BA5BC;
+  --ifm-background-color:            #0A0E1A;
+  --ifm-background-surface-color:    #0D1120;
+  --ifm-navbar-background-color:     #0A0E1A;
+  --ifm-footer-background-color:     #0D1120;
+  --ifm-color-emphasis-200:    #1A2234;
+  --ifm-color-emphasis-300:    #1A2234;
+  --ifm-code-background:       #111827;
   --docusaurus-highlighted-code-line-bg: rgba(212,160,23,0.12);
+  --ifm-menu-color:            #9BA5BC;
 }
 
-/* ── Fonts applied globally ───────────────────────────────────────────── */
+/* ────────────────────────────────────────────────
+   Base
+─────────────────────────────────────────────────── */
 body {
   font-family: var(--ifm-font-family-base);
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5 {
   font-family: var(--ifm-heading-font-family);
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
-/* Large doc title → Spectral */
-.markdown h1:first-child {
-  font-family: 'Spectral', serif;
-  font-weight: 400;
-  font-size: 2rem;
-  letter-spacing: 0;
-  line-height: 1.3;
+/* ────────────────────────────────────────────────
+   Navbar
+─────────────────────────────────────────────────── */
+.navbar {
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
+  box-shadow: none;
+  height: 60px;
+}
+.navbar__brand {
+  font-family: var(--pp-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.navbar__item {
+  font-size: 0.875rem;
+  font-weight: 500;
 }
 
-/* ── Navbar CTA button ────────────────────────────────────────────────── */
+/* CTA button in navbar */
 .navbar--cta {
-  background: var(--color-mustard, #D4A017);
-  color: #0B0F19 !important;
+  background: #D4A017;
+  color: #0A0E1A !important;
   border-radius: 6px;
   padding: 6px 16px !important;
   font-weight: 600;
-  font-size: 0.8rem;
+  font-size: 0.8125rem;
+  font-family: var(--ifm-font-family-base);
   transition: opacity 0.15s;
 }
-.navbar--cta:hover {
-  opacity: 0.88;
-  color: #0B0F19 !important;
-}
+.navbar--cta:hover { opacity: 0.88; color: #0A0E1A !important; text-decoration: none; }
 
-/* ── Sidebar ──────────────────────────────────────────────────────────── */
+/* ────────────────────────────────────────────────
+   Sidebar
+─────────────────────────────────────────────────── */
 .menu__link {
   font-size: 0.875rem;
-  border-radius: 5px;
+  border-radius: 4px;
+  font-weight: 400;
 }
 .menu__link--active {
   font-weight: 600;
 }
-.menu__caret::before {
-  border-color: var(--ifm-color-emphasis-300);
+.menu__list-item-collapsible .menu__link {
+  font-family: var(--pp-mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ifm-menu-color);
 }
 
-/* ── Code blocks ──────────────────────────────────────────────────────── */
-.prism-code {
-  font-size: 0.85rem;
-  line-height: 1.6;
-}
-
-/* Method-colored code block headers */
-.language-bash .token.function   { color: #3A7D56; }   /* green for command verbs */
-
-/* HTTP method spans in inline code */
-code[class*='language-'] .token.string { color: var(--ifm-color-primary); }
-
-/* Inline code */
+/* ────────────────────────────────────────────────
+   Code blocks
+─────────────────────────────────────────────────── */
 code:not([class*='language-']) {
   border: 1px solid var(--ifm-color-emphasis-300);
   background: var(--ifm-code-background);
-  padding: 0.125em 0.35em;
+  padding: 0.1em 0.4em;
   border-radius: 4px;
   font-size: 0.875em;
 }
 
-/* ── Method badge utility classes (used in API reference) ──────────────── */
-.method-get    { color: #3A7D56; font-family: var(--ifm-font-family-monospace); font-size: 0.75rem; font-weight: 700; }
-.method-post   { color: #2563eb; font-family: var(--ifm-font-family-monospace); font-size: 0.75rem; font-weight: 700; }
-.method-patch  { color: #d97706; font-family: var(--ifm-font-family-monospace); font-size: 0.75rem; font-weight: 700; }
-.method-delete { color: #dc2626; font-family: var(--ifm-font-family-monospace); font-size: 0.75rem; font-weight: 700; }
-.method-put    { color: #7c3aed; font-family: var(--ifm-font-family-monospace); font-size: 0.75rem; font-weight: 700; }
-
-/* ── Admonitions ──────────────────────────────────────────────────────── */
-.admonition-note     { border-left-color: var(--color-slate); }
-.admonition-tip      { border-left-color: var(--color-green); }
-.admonition-caution  { border-left-color: var(--color-mustard); }
-.admonition-danger   { border-left-color: var(--color-coral); }
-
-/* ── Breadcrumbs ──────────────────────────────────────────────────────── */
-.breadcrumbs__item--active .breadcrumbs__link {
-  color: var(--ifm-color-primary);
+.prism-code {
+  font-size: 0.8125rem;
+  line-height: 1.65;
 }
 
-/* ── Tables ───────────────────────────────────────────────────────────── */
+/* Method color classes */
+.method-get    { color: #3A7D56; font-family: var(--pp-mono); font-size: 0.75rem; font-weight: 700; }
+.method-post   { color: #2563eb; font-family: var(--pp-mono); font-size: 0.75rem; font-weight: 700; }
+.method-patch  { color: #d97706; font-family: var(--pp-mono); font-size: 0.75rem; font-weight: 700; }
+.method-delete { color: #dc2626; font-family: var(--pp-mono); font-size: 0.75rem; font-weight: 700; }
+
+/* ────────────────────────────────────────────────
+   Tables
+─────────────────────────────────────────────────── */
 table th {
-  font-family: var(--ifm-font-family-monospace);
-  font-size: 0.7rem;
+  font-family: var(--pp-mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--ifm-color-emphasis-600, #888);
+  color: #888;
 }
 
-/* ── Footer ───────────────────────────────────────────────────────────── */
+/* ────────────────────────────────────────────────
+   Footer
+─────────────────────────────────────────────────── */
 .footer {
   border-top: 1px solid var(--ifm-color-emphasis-300);
 }
 .footer__title {
-  font-family: var(--ifm-font-family-monospace);
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
+  font-family: var(--pp-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 .footer__copyright {
   font-size: 0.8rem;
+}
+
+/* ────────────────────────────────────────────────
+   Breadcrumbs
+─────────────────────────────────────────────────── */
+.breadcrumbs__item--active .breadcrumbs__link {
+  color: var(--ifm-color-primary);
+  font-weight: 500;
 }
