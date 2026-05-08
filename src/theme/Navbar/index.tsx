@@ -5,12 +5,12 @@ import { useLocation } from '@docusaurus/router';
 import styles from './styles.module.css';
 
 const SECONDARY_LINKS = [
-  { label: 'Get started',    to: '/start/quickstart' },
-  { label: 'Concepts',       to: '/concepts/glossary' },
-  { label: 'Guides',         to: '/guides/run-headless-session' },
-  { label: 'API reference',  to: '/api' },
-  { label: 'Integrations',   to: '/integrations' },
-  { label: 'Reference',      to: '/reference/errors' },
+  { label: 'Get started',   to: '/start/quickstart' },
+  { label: 'Concepts',      to: '/concepts/system-of-decision' },
+  { label: 'Guides',        to: '/guides/run-headless-session' },
+  { label: 'API reference', to: '/api' },
+  { label: 'Integrations',  to: '/integrations' },
+  { label: 'Reference',     to: '/reference/errors' },
 ];
 
 export default function NavbarWrapper(props: object): React.ReactElement {

@@ -9,7 +9,7 @@ const TASK_COLUMNS = [
     heading: 'Get started',
     links: [
       { href: '/start/quickstart',    label: 'Run your first prioritization session' },
-      { href: '/start/core-concepts', label: 'Understand the System of Decision' },
+      { href: '/concepts/system-of-decision', label: 'Understand the System of Decision' },
       { href: '/start/authentication', label: 'Set up API authentication' },
     ],
   },
