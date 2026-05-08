@@ -81,12 +81,6 @@ const config: Config = {
           position: 'left',
           value: '<a href="/" class="navbar__brand-text">Priorities.ai <span class="navbar__brand-tag">Docs</span></a>',
         },
-        // Spacer pushes search to center
-        {
-          type: 'search',
-          position: 'left',
-          className: 'navbar__search-item',
-        },
         // Right side
         {
           href: 'https://priorities.ai',
@@ -154,7 +148,7 @@ const config: Config = {
 
   } satisfies Preset.ThemeConfig,
 
-  plugins: [
+  themes: [
     [
       require.resolve('@easyops-cn/docusaurus-search-local'),
       {
@@ -164,7 +158,7 @@ const config: Config = {
         docsRouteBasePath: '/',
         highlightSearchTermsOnTargetPage: true,
         searchBarShortcutHint: false,
-        searchBarPosition: 'auto',
+        searchBarPosition: 'left',
       },
     ],
   ],
