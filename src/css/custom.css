@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,600;1,300&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap');
+
+/* ── Light-mode tokens ────────────────────────────────────────────────── */
+:root {
+  /* Docusaurus primary (mustard) */
+  --ifm-color-primary:         #b8890f;
+  --ifm-color-primary-dark:    #a67b0d;
+  --ifm-color-primary-darker:  #9d740c;
+  --ifm-color-primary-darkest: #82600a;
+  --ifm-color-primary-light:   #ca970e;
+  --ifm-color-primary-lighter: #d3a012;
+  --ifm-color-primary-lightest: #d4a017;
+
+  /* Typography */
+  --ifm-font-family-base:       'Inter', sans-serif;
+  --ifm-font-family-monospace:  'JetBrains Mono', monospace;
+  --ifm-heading-font-family:    'Inter', sans-serif;
+  --ifm-font-size-base:         15px;
+  --ifm-line-height-base:       1.7;
+
+  /* Backgrounds */
+  --ifm-background-color:       #ffffff;
+  --ifm-background-surface-color: #f8f9fb;
+  --ifm-navbar-background-color: #ffffff;
+  --ifm-footer-background-color: #f3f4f7;
+
+  /* Code */
+  --ifm-code-font-size:         0.875rem;
+  --ifm-code-border-radius:     5px;
+  --ifm-code-background:        #f0f2f6;
+  --docusaurus-highlighted-code-line-bg: rgba(212,160,23,0.12);
+
+  /* Border */
+  --ifm-color-emphasis-300:     #e4e7ed;
+  --ifm-hr-border-color:        #e4e7ed;
+
+  /* Table of contents */
+  --ifm-toc-border-color:       #e4e7ed;
+
+  /* Sidebar */
+  --ifm-sidebar-width:          280px;
+  --ifm-menu-color:             #4a5568;
+  --ifm-menu-color-active:      #b8890f;
+
+  /* Brand palette for prose */
+  --color-mustard:   #D4A017;
+  --color-coral:     #C0533A;
+  --color-green:     #3A7D56;
+  --color-slate:     #3D4B6F;
+}
+
+/* ── Dark-mode tokens ─────────────────────────────────────────────────── */
+[data-theme='dark'] {
+  --ifm-color-primary:         #D4A017;
+  --ifm-color-primary-dark:    #c09215;
+  --ifm-color-primary-darker:  #b68912;
+  --ifm-color-primary-darkest: #956f0f;
+  --ifm-color-primary-light:   #e8ae1a;
+  --ifm-color-primary-lighter: #ebb51d;
+  --ifm-color-primary-lightest: #f0bc25;
+
+  --ifm-background-color:          #0B0F19;
+  --ifm-background-surface-color:  #111827;
+  --ifm-navbar-background-color:   #0D1220;
+  --ifm-footer-background-color:   #0D1220;
+  --ifm-code-background:           #1a2234;
+  --ifm-color-emphasis-300:        #1A2234;
+  --ifm-hr-border-color:           #1A2234;
+  --ifm-toc-border-color:          #1A2234;
+  --ifm-menu-color:                #9BA5BC;
+  --docusaurus-highlighted-code-line-bg: rgba(212,160,23,0.12);
+}
+
+/* ── Fonts applied globally ───────────────────────────────────────────── */
+body {
+  font-family: var(--ifm-font-family-base);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--ifm-heading-font-family);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Large doc title → Spectral */
+.markdown h1:first-child {
+  font-family: 'Spectral', serif;
+  font-weight: 400;
+  font-size: 2rem;
+  letter-spacing: 0;
+  line-height: 1.3;
+}
+
+/* ── Navbar CTA button ────────────────────────────────────────────────── */
+.navbar--cta {
+  background: var(--color-mustard, #D4A017);
+  color: #0B0F19 !important;
+  border-radius: 6px;
+  padding: 6px 16px !important;
+  font-weight: 600;
+  font-size: 0.8rem;
+  transition: opacity 0.15s;
+}
+.navbar--cta:hover {
+  opacity: 0.88;
+  color: #0B0F19 !important;
+}
+
+/* ── Sidebar ──────────────────────────────────────────────────────────── */
+.menu__link {
+  font-size: 0.875rem;
+  border-radius: 5px;
+}
+.menu__link--active {
+  font-weight: 600;
+}
+.menu__caret::before {
+  border-color: var(--ifm-color-emphasis-300);
+}
+
+/* ── Code blocks ──────────────────────────────────────────────────────── */
+.prism-code {
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+/* Method-colored code block headers */
+.language-bash .token.function   { color: #3A7D56; }   /* green for command verbs */
+
+/* HTTP method spans in inline code */
+code[class*='language-'] .token.string { color: var(--ifm-color-primary); }
+
+/* Inline code */
+code:not([class*='language-']) {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  background: var(--ifm-code-background);
+  padding: 0.125em 0.35em;
+  border-radius: 4px;
+  font-size: 0.875em;
+}
+
+/* ── Method badge utility classes (used in API reference) ──────────────── */
+.method-get    { color: #3A7D56; font-family: var(--ifm-font-family-monospace); font-size: 0.75rem; font-weight: 700; }
+.method-post   { color: #2563eb; font-family: var(--ifm-font-family-monospace); font-size: 0.75rem; font-weight: 700; }
+.method-patch  { color: #d97706; font-family: var(--ifm-font-family-monospace); font-size: 0.75rem; font-weight: 700; }
+.method-delete { color: #dc2626; font-family: var(--ifm-font-family-monospace); font-size: 0.75rem; font-weight: 700; }
+.method-put    { color: #7c3aed; font-family: var(--ifm-font-family-monospace); font-size: 0.75rem; font-weight: 700; }
+
+/* ── Admonitions ──────────────────────────────────────────────────────── */
+.admonition-note     { border-left-color: var(--color-slate); }
+.admonition-tip      { border-left-color: var(--color-green); }
+.admonition-caution  { border-left-color: var(--color-mustard); }
+.admonition-danger   { border-left-color: var(--color-coral); }
+
+/* ── Breadcrumbs ──────────────────────────────────────────────────────── */
+.breadcrumbs__item--active .breadcrumbs__link {
+  color: var(--ifm-color-primary);
+}
+
+/* ── Tables ───────────────────────────────────────────────────────────── */
+table th {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ifm-color-emphasis-600, #888);
+}
+
+/* ── Footer ───────────────────────────────────────────────────────────── */
+.footer {
+  border-top: 1px solid var(--ifm-color-emphasis-300);
+}
+.footer__title {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.footer__copyright {
+  font-size: 0.8rem;
+}
