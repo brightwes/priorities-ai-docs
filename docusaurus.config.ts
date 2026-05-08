@@ -45,6 +45,8 @@ const config: Config = {
           editUrl: 'https://github.com/priorities-ai/priorities-ai/edit/main/',
           showLastUpdateTime: false,
           breadcrumbs: true,
+          // index.md is handled by src/pages/index.tsx (custom home, like docs.stripe.com)
+          exclude: ['index.md'],
         },
         blog: false,
         theme: {

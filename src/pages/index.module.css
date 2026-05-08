@@ -1,0 +1,186 @@
+/* ── Layout shell ── */
+.main {
+  font-family: 'Inter', sans-serif;
+}
+.inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ── Hero ── */
+.hero {
+  padding: 64px 24px 40px;
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
+}
+.heroH1 {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 700;
+  color: var(--ifm-heading-color);
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+.heroSub {
+  font-size: 1.0625rem;
+  color: var(--ifm-color-secondary-darkest, #555);
+  line-height: 1.6;
+  max-width: 560px;
+  margin: 0;
+}
+
+/* ── Task entry points ── */
+.tasks {
+  padding: 40px 24px 48px;
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
+}
+.taskList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.taskItem {
+  border-right: 1px solid var(--ifm-color-emphasis-300);
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
+}
+.taskItem:nth-child(2n) {
+  border-right: none;
+}
+@media (min-width: 840px) {
+  .taskItem:nth-child(2n) { border-right: 1px solid var(--ifm-color-emphasis-300); }
+  .taskList { grid-template-columns: repeat(4, 1fr); }
+  .taskItem:nth-child(4n) { border-right: none; }
+  .taskItem:nth-last-child(-n+4) { border-bottom: none; }
+}
+.taskLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 16px 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--ifm-link-color);
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+  line-height: 1.4;
+  min-height: 60px;
+}
+.taskLink:hover {
+  background: var(--ifm-background-surface-color);
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+.taskLink svg {
+  flex-shrink: 0;
+  opacity: 0.4;
+  transition: opacity 0.15s, transform 0.15s;
+}
+.taskLink:hover svg {
+  opacity: 1;
+  transform: translateX(2px);
+}
+
+/* ── Browse by area ── */
+.browse {
+  padding: 56px 24px 80px;
+}
+.browseHeading {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ifm-color-secondary-darkest, #888);
+  margin-bottom: 24px;
+}
+.browseGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--ifm-color-emphasis-300);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  overflow: hidden;
+}
+@media (max-width: 900px) {
+  .browseGrid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .browseGrid { grid-template-columns: 1fr; }
+}
+
+.areaCard {
+  background: var(--ifm-background-color);
+  padding: 28px 24px;
+  position: relative;
+  transition: background 0.15s;
+}
+.areaCard:hover {
+  background: var(--ifm-background-surface-color);
+}
+.areaAccent {
+  width: 28px;
+  height: 3px;
+  border-radius: 2px;
+  margin-bottom: 16px;
+  opacity: 0.7;
+}
+.areaHeading {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--ifm-heading-color);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+.areaDesc {
+  font-size: 0.8125rem;
+  color: var(--ifm-color-secondary-darkest, #666);
+  line-height: 1.55;
+  margin-bottom: 16px;
+}
+.areaLinks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid var(--ifm-color-emphasis-300);
+  padding-top: 12px;
+}
+.areaLinks li {
+  margin-bottom: 4px;
+}
+.areaLink {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--ifm-link-color);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.15s;
+  padding: 2px 0;
+}
+.areaLink:hover {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+.areaLink::after {
+  content: '→';
+  font-size: 0.75rem;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.15s, transform 0.15s;
+  display: inline-block;
+}
+.areaLink:hover::after {
+  opacity: 1;
+  transform: translateX(0);
+}
