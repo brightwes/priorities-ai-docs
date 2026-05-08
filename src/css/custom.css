@@ -96,37 +96,91 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ────────────────────────────────────────────────
-   Navbar
+   Navbar — mirrors docs.stripe.com top bar
+   Row 1: Logo + "Priorities.ai Docs"  |  Search  |  Create account  Sign in
+   Row 2: secondary nav (injected via Navbar swizzle)
 ─────────────────────────────────────────────────── */
 .navbar {
   border-bottom: 1px solid var(--ifm-color-emphasis-300);
   box-shadow: none;
   height: 60px;
-}
-.navbar__brand {
-  font-family: var(--pp-mono);
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
-.navbar__item {
-  font-size: 0.875rem;
-  font-weight: 500;
+  padding: 0 24px;
 }
 
-/* CTA button in navbar */
-.navbar--cta {
-  background: #3D4B6F;
-  color: #ffffff !important;
-  border-radius: 6px;
-  padding: 6px 16px !important;
-  font-weight: 600;
-  font-size: 0.8125rem;
+/* Logo image — keep small */
+.navbar__logo img { height: 28px; width: auto; }
+
+/* Brand wordmark injected via HTML item */
+.navbar__brand-text {
   font-family: var(--ifm-font-family-base);
-  transition: opacity 0.15s;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--ifm-heading-color) !important;
+  text-decoration: none !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: 16px;
 }
-.navbar--cta:hover { opacity: 0.88; color: #ffffff !important; text-decoration: none; }
+.navbar__brand-text .navbar__brand-tag {
+  font-size: 0.6875rem;
+  font-family: var(--pp-mono);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #888;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 4px;
+  padding: 1px 6px;
+}
+.navbar__brand-text:hover { text-decoration: none !important; }
+
+/* Search sits between brand and right links */
+.navbar__search-item { flex: 1; max-width: 480px; }
+.navbar__search-item .aa-Autocomplete,
+.navbar__search-item [class*='searchBar'] { width: 100%; }
+
+/* Grow spacer so search lands center-ish */
+.navbar__items--right { gap: 4px; }
+
+/* Muted "Create account" link */
+.navbar__link-muted {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #555 !important;
+  padding: 6px 10px !important;
+}
+.navbar__link-muted:hover { color: var(--ifm-heading-color) !important; text-decoration: none; }
+
+/* "Sign in" as an outlined button */
+.navbar__link-signin {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--ifm-heading-color) !important;
+  border: 1.5px solid var(--ifm-color-emphasis-300);
+  border-radius: 6px;
+  padding: 5px 14px !important;
+  transition: border-color 0.15s, background 0.15s;
+}
+.navbar__link-signin:hover {
+  border-color: var(--ifm-color-primary);
+  background: var(--ifm-background-surface-color);
+  text-decoration: none;
+}
+
+/* Offset main content so secondary nav doesn't overlap */
+.main-wrapper { padding-top: 44px; }
+/* But not on the homepage (no padding-top needed there) */
+.homepage-wrapper { padding-top: 0; }
+
+/* Offset content area below the secondary nav bar */
+:global(.main-wrapper) {
+  padding-top: 44px !important;
+}
+/* But home page manages its own offset */
+:global(.homepageWrapper .main-wrapper) {
+  padding-top: 0 !important;
+}
 
 /* ────────────────────────────────────────────────
    Sidebar

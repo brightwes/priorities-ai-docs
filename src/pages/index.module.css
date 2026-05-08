@@ -1,97 +1,238 @@
-/* ── Layout shell ── */
+/* ── Wrapper — compensates for secondary nav height ── */
+.homepageWrapper :global(.main-wrapper) {
+  padding-top: 0;
+}
+
 .main {
   font-family: 'Inter', sans-serif;
 }
+
 .inner {
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 24px;
 }
 
-/* ── Hero ── */
+/* ── Hero — split layout ── */
 .hero {
-  padding: 64px 24px 40px;
+  padding: 64px 24px 56px;
   border-bottom: 1px solid var(--ifm-color-emphasis-300);
+  /* Subtle dot grid, exactly like docs.stripe.com */
+  background-image: radial-gradient(circle, var(--ifm-color-emphasis-300) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: 0 0;
 }
+
+.heroInner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .heroInner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .heroRight { display: none; }
+}
+
+.heroLeft { max-width: 480px; }
+
 .heroH1 {
   font-family: 'Inter', sans-serif;
-  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-size: clamp(1.875rem, 3.5vw, 2.5rem);
   font-weight: 700;
   color: var(--ifm-heading-color);
   letter-spacing: -0.025em;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   line-height: 1.15;
 }
+
 .heroSub {
   font-size: 1rem;
   color: var(--ifm-color-secondary-darkest, #555);
   line-height: 1.65;
-  max-width: 540px;
-  margin: 0;
+  margin: 0 0 28px;
 }
 
-/* ── Task entry points ── */
+.heroCtas {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.heroCta {
+  display: inline-flex;
+  align-items: center;
+  background: var(--ifm-color-primary);
+  color: #fff !important;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: 6px;
+  text-decoration: none !important;
+  transition: opacity 0.15s;
+  white-space: nowrap;
+}
+.heroCta:hover { opacity: 0.88; text-decoration: none !important; }
+
+.heroCtaSecondary {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--ifm-color-primary) !important;
+  text-decoration: none !important;
+  transition: color 0.15s;
+}
+.heroCtaSecondary:hover {
+  color: var(--ifm-color-primary-dark) !important;
+  text-decoration: underline !important;
+}
+
+/* ── Hero right panel — mock API response card ── */
+.heroRight {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.mockPanel {
+  background: var(--ifm-heading-color, #0a0e1a);
+  border-radius: 10px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+}
+
+.mockPanelHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.mockDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.mockPanelTitle {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-left: 6px;
+}
+
+.mockCode {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  color: #e2e8f0;
+  background: transparent;
+  padding: 20px 20px 16px;
+  margin: 0;
+  border: none;
+  white-space: pre;
+  overflow: hidden;
+}
+
+.mockResponse {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  background: rgba(58,125,86,0.15);
+}
+
+.mockStatus {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #4ade80;
+}
+
+.mockMessage {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.55);
+}
+
+/* ── Task entry points — 3 columns with headings ── */
 .tasks {
-  padding: 40px 24px 48px;
+  padding: 48px 24px 48px;
   border-bottom: 1px solid var(--ifm-color-emphasis-300);
 }
-.taskList {
+
+.tasksInner {
+  max-width: 1100px;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 0;
+}
+
+@media (max-width: 768px) {
+  .tasksInner { grid-template-columns: 1fr; }
+}
+
+.taskCol {
+  padding: 0 32px 0 0;
+  border-right: 1px solid var(--ifm-color-emphasis-300);
+  margin-right: 32px;
+}
+.taskCol:last-child {
+  padding-right: 0;
+  border-right: none;
+  margin-right: 0;
+}
+
+.taskColHeading {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--ifm-heading-color);
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+
+.taskList {
   list-style: none;
   padding: 0;
   margin: 0;
-  border: 1px solid var(--ifm-color-emphasis-300);
-  border-radius: 8px;
-  overflow: hidden;
 }
-.taskItem {
-  border-right: 1px solid var(--ifm-color-emphasis-300);
-  border-bottom: 1px solid var(--ifm-color-emphasis-300);
-}
-.taskItem:nth-child(2n) {
-  border-right: none;
-}
-@media (min-width: 840px) {
-  .taskItem:nth-child(2n) { border-right: 1px solid var(--ifm-color-emphasis-300); }
-  .taskList { grid-template-columns: repeat(4, 1fr); }
-  .taskItem:nth-child(4n) { border-right: none; }
-  .taskItem:nth-last-child(-n+4) { border-bottom: none; }
-}
+
 .taskLink {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  padding: 16px 20px;
+  display: block;
   font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--ifm-link-color);
-  text-decoration: none;
-  transition: background 0.15s, color 0.15s;
-  line-height: 1.4;
-  min-height: 60px;
+  font-weight: 400;
+  color: var(--ifm-link-color) !important;
+  text-decoration: none !important;
+  padding: 6px 0;
+  transition: color 0.15s;
+  line-height: 1.45;
 }
 .taskLink:hover {
-  background: var(--ifm-background-surface-color);
-  color: var(--ifm-color-primary);
-  text-decoration: none;
-}
-.taskLink svg {
-  flex-shrink: 0;
-  opacity: 0.4;
-  transition: opacity 0.15s, transform 0.15s;
-}
-.taskLink:hover svg {
-  opacity: 1;
-  transform: translateX(2px);
+  color: var(--ifm-color-primary) !important;
+  text-decoration: underline !important;
 }
 
 /* ── Browse by area ── */
 .browse {
   padding: 56px 24px 80px;
 }
+
 .browseHeading {
   font-family: 'Inter', sans-serif;
   font-size: 0.6875rem;
@@ -101,6 +242,7 @@
   color: var(--ifm-color-secondary-darkest, #888);
   margin-bottom: 24px;
 }
+
 .browseGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -110,22 +252,17 @@
   border-radius: 8px;
   overflow: hidden;
 }
-@media (max-width: 900px) {
-  .browseGrid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 600px) {
-  .browseGrid { grid-template-columns: 1fr; }
-}
+
+@media (max-width: 900px) { .browseGrid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .browseGrid { grid-template-columns: 1fr; } }
 
 .areaCard {
   background: var(--ifm-background-color);
   padding: 28px 24px;
-  position: relative;
   transition: background 0.15s;
 }
-.areaCard:hover {
-  background: var(--ifm-background-surface-color);
-}
+.areaCard:hover { background: var(--ifm-background-surface-color); }
+
 .areaAccent {
   width: 28px;
   height: 3px;
@@ -133,6 +270,7 @@
   margin-bottom: 16px;
   opacity: 0.7;
 }
+
 .areaHeading {
   font-family: 'Inter', sans-serif;
   font-size: 0.9375rem;
@@ -141,12 +279,14 @@
   margin-bottom: 8px;
   line-height: 1.3;
 }
+
 .areaDesc {
   font-size: 0.8125rem;
   color: var(--ifm-color-secondary-darkest, #666);
   line-height: 1.55;
   margin-bottom: 16px;
 }
+
 .areaLinks {
   list-style: none;
   padding: 0;
@@ -154,24 +294,20 @@
   border-top: 1px solid var(--ifm-color-emphasis-300);
   padding-top: 12px;
 }
-.areaLinks li {
-  margin-bottom: 4px;
-}
+.areaLinks li { margin-bottom: 4px; }
+
 .areaLink {
   font-size: 0.8125rem;
   font-weight: 500;
-  color: var(--ifm-link-color);
-  text-decoration: none;
+  color: var(--ifm-link-color) !important;
+  text-decoration: none !important;
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  transition: color 0.15s;
   padding: 2px 0;
+  transition: color 0.15s;
 }
-.areaLink:hover {
-  color: var(--ifm-color-primary);
-  text-decoration: none;
-}
+.areaLink:hover { color: var(--ifm-color-primary) !important; text-decoration: none !important; }
 .areaLink::after {
   content: '→';
   font-size: 0.75rem;
@@ -180,7 +316,4 @@
   transition: opacity 0.15s, transform 0.15s;
   display: inline-block;
 }
-.areaLink:hover::after {
-  opacity: 1;
-  transform: translateX(0);
-}
+.areaLink:hover::after { opacity: 1; transform: translateX(0); }

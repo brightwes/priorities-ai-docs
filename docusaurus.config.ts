@@ -57,7 +57,6 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Social card
     image: 'img/og-card.png',
 
     colorMode: {
@@ -66,39 +65,40 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
 
+    // Search is provided by @easyops-cn/docusaurus-search-local (registered as plugin below)
+
     navbar: {
-      title: 'Priorities.ai',
+      title: '',
       logo: {
-        alt: 'Priorities.ai',
+        alt: 'Priorities.ai Docs',
         src: 'img/logo.svg',
+        href: '/',
       },
       items: [
+        // Brand wordmark next to logo
         {
-          type: 'docSidebar',
-          sidebarId: 'docs',
+          type: 'html',
           position: 'left',
-          label: 'Docs',
+          value: '<a href="/" class="navbar__brand-text">Priorities.ai <span class="navbar__brand-tag">Docs</span></a>',
         },
+        // Spacer pushes search to center
         {
-          to: '/api',
-          label: 'API Reference',
+          type: 'search',
           position: 'left',
+          className: 'navbar__search-item',
         },
-        {
-          to: '/integrations',
-          label: 'Integrations',
-          position: 'left',
-        },
+        // Right side
         {
           href: 'https://priorities.ai',
-          label: 'priorities.ai',
+          label: 'Create account',
           position: 'right',
+          className: 'navbar__link-muted',
         },
         {
-          href: 'https://priorities.ai/sign-up',
-          label: 'Get started',
+          href: 'https://app.priorities.ai',
+          label: 'Sign in',
           position: 'right',
-          className: 'navbar--cta',
+          className: 'navbar__link-signin',
         },
       ],
     },
@@ -152,8 +152,22 @@ const config: Config = {
       additionalLanguages: ['bash', 'json', 'typescript', 'python', 'ruby'],
     },
 
-    algolia: undefined,
   } satisfies Preset.ThemeConfig,
+
+  plugins: [
+    [
+      require.resolve('@easyops-cn/docusaurus-search-local'),
+      {
+        hashed: true,
+        language: ['en'],
+        indexBlog: false,
+        docsRouteBasePath: '/',
+        highlightSearchTermsOnTargetPage: true,
+        searchBarShortcutHint: false,
+        searchBarPosition: 'auto',
+      },
+    ],
+  ],
 };
 
 export default config;
