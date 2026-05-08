@@ -4,14 +4,17 @@
    Peak Priorities design tokens — light mode
 ─────────────────────────────────────────────────── */
 :root {
-  /* Primary = mustard */
-  --ifm-color-primary:          #9A7010;
-  --ifm-color-primary-dark:     #8A6410;
-  --ifm-color-primary-darker:   #7E5B0E;
-  --ifm-color-primary-darkest:  #674A0B;
-  --ifm-color-primary-light:    #AA7C12;
-  --ifm-color-primary-lighter:  #BA8814;
-  --ifm-color-primary-lightest: #D4A017;
+  /* Primary = slate (reads cleanly on white) */
+  --ifm-color-primary:          #3D4B6F;
+  --ifm-color-primary-dark:     #364270;
+  --ifm-color-primary-darker:   #303b65;
+  --ifm-color-primary-darkest:  #273055;
+  --ifm-color-primary-light:    #485578;
+  --ifm-color-primary-lighter:  #536082;
+  --ifm-color-primary-lightest: #6b7a96;
+
+  /* Mustard is accent only — not primary in light mode */
+  --pp-accent: #9A7010;
 
   /* Typography */
   --ifm-font-family-base:       'Inter', system-ui, sans-serif;
@@ -42,11 +45,11 @@
   /* Sidebar */
   --ifm-sidebar-width:         272px;
   --ifm-menu-color:            #4a5568;
-  --ifm-menu-color-active:     #9A7010;
+  --ifm-menu-color-active:     #3D4B6F;
 
   /* Link */
-  --ifm-link-color:            #9A7010;
-  --ifm-link-hover-color:      #D4A017;
+  --ifm-link-color:            #3D4B6F;
+  --ifm-link-hover-color:      #273055;
 
   /* Brand tokens for prose */
   --pp-mustard: #D4A017;
@@ -114,8 +117,8 @@ h1, h2, h3, h4, h5 {
 
 /* CTA button in navbar */
 .navbar--cta {
-  background: #D4A017;
-  color: #0A0E1A !important;
+  background: #3D4B6F;
+  color: #ffffff !important;
   border-radius: 6px;
   padding: 6px 16px !important;
   font-weight: 600;
@@ -123,7 +126,7 @@ h1, h2, h3, h4, h5 {
   font-family: var(--ifm-font-family-base);
   transition: opacity 0.15s;
 }
-.navbar--cta:hover { opacity: 0.88; color: #0A0E1A !important; text-decoration: none; }
+.navbar--cta:hover { opacity: 0.88; color: #ffffff !important; text-decoration: none; }
 
 /* ────────────────────────────────────────────────
    Sidebar
