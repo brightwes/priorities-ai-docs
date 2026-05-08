@@ -68,20 +68,13 @@ const config: Config = {
     // Search is provided by @easyops-cn/docusaurus-search-local (registered as plugin below)
 
     navbar: {
-      title: '',
+      title: 'Priorities.ai',
       logo: {
-        alt: 'Priorities.ai Docs',
+        alt: 'Priorities.ai',
         src: 'img/logo.svg',
         href: '/',
       },
       items: [
-        // Brand wordmark next to logo
-        {
-          type: 'html',
-          position: 'left',
-          value: '<a href="/" class="navbar__brand-text">Priorities.ai <span class="navbar__brand-tag">Docs</span></a>',
-        },
-        // Right side
         {
           href: 'https://priorities.ai',
           label: 'Create account',

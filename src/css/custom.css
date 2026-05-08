@@ -107,23 +107,20 @@ h1, h2, h3, h4, h5 {
   padding: 0 24px;
 }
 
-/* Logo image — keep small */
-.navbar__logo img { height: 28px; width: auto; }
+/* Logo icon */
+.navbar__logo img { height: 22px; width: auto; }
 
-/* Brand wordmark injected via HTML item */
-.navbar__brand-text {
+/* Brand: "Priorities.ai" title + "Docs" tag via CSS */
+.navbar__title {
   font-family: var(--ifm-font-family-base);
   font-size: 0.9375rem;
   font-weight: 700;
-  color: var(--ifm-heading-color) !important;
-  text-decoration: none !important;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-right: 16px;
+  letter-spacing: -0.01em;
+  color: var(--ifm-heading-color);
 }
-.navbar__brand-text .navbar__brand-tag {
-  font-size: 0.6875rem;
+.navbar__title::after {
+  content: 'Docs';
+  font-size: 0.6rem;
   font-family: var(--pp-mono);
   font-weight: 500;
   letter-spacing: 0.08em;
@@ -131,16 +128,14 @@ h1, h2, h3, h4, h5 {
   color: #888;
   border: 1px solid var(--ifm-color-emphasis-300);
   border-radius: 4px;
-  padding: 1px 6px;
+  padding: 1px 5px;
+  margin-left: 8px;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
 }
-.navbar__brand-text:hover { text-decoration: none !important; }
 
-/* Search sits between brand and right links */
-.navbar__search-item { flex: 1; max-width: 480px; }
-.navbar__search-item .aa-Autocomplete,
-.navbar__search-item [class*='searchBar'] { width: 100%; }
-
-/* Grow spacer so search lands center-ish */
+/* Right-side links spacing */
 .navbar__items--right { gap: 4px; }
 
 /* Muted "Create account" link */
