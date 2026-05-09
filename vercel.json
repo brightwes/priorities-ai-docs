@@ -1,6 +1,6 @@
 {
   "framework": "docusaurus2",
-  "buildCommand": "cd docs-site && npm ci && npm run build",
-  "outputDirectory": "docs-site/build",
-  "installCommand": "echo 'install handled in build'"
+  "buildCommand": "npm ci && npm run build",
+  "outputDirectory": "build",
+  "installCommand": "npm ci"
 }
