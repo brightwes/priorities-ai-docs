@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <!-- Ascending bars: priority stack / ranked list mark -->
+  <rect x="0"  y="16" width="5" height="8" rx="1.5" fill="#D4A017"/>
+  <rect x="7"  y="10" width="5" height="14" rx="1.5" fill="#9BA5BC"/>
+  <rect x="14" y="4"  width="5" height="20" rx="1.5" fill="#3D4B6F"/>
+</svg>

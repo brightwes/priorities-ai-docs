@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap');
+
+/* ────────────────────────────────────────────────
+   Peak Priorities design tokens — light mode
+─────────────────────────────────────────────────── */
+:root {
+  /* Primary = slate (reads cleanly on white) */
+  --ifm-color-primary:          #3D4B6F;
+  --ifm-color-primary-dark:     #364270;
+  --ifm-color-primary-darker:   #303b65;
+  --ifm-color-primary-darkest:  #273055;
+  --ifm-color-primary-light:    #485578;
+  --ifm-color-primary-lighter:  #536082;
+  --ifm-color-primary-lightest: #6b7a96;
+
+  /* Mustard is accent only — not primary in light mode */
+  --pp-accent: #9A7010;
+
+  /* Typography */
+  --ifm-font-family-base:       'Inter', system-ui, sans-serif;
+  --ifm-font-family-monospace:  'JetBrains Mono', monospace;
+  --ifm-font-size-base:         15px;
+  --ifm-line-height-base:       1.7;
+  --ifm-heading-font-family:    'Inter', system-ui, sans-serif;
+  --ifm-heading-font-weight:    700;
+
+  /* Backgrounds — light, clean, like docs.stripe.com */
+  --ifm-background-color:            #ffffff;
+  --ifm-background-surface-color:    #f7f8fc;
+  --ifm-navbar-background-color:     #ffffff;
+  --ifm-footer-background-color:     #f7f8fc;
+
+  /* Borders */
+  --ifm-color-emphasis-200:    #e8eaf0;
+  --ifm-color-emphasis-300:    #dde0eb;
+  --ifm-hr-border-color:       #dde0eb;
+  --ifm-toc-border-color:      #dde0eb;
+
+  /* Code */
+  --ifm-code-font-size:        0.875rem;
+  --ifm-code-border-radius:    4px;
+  --ifm-code-background:       #f0f2f8;
+  --docusaurus-highlighted-code-line-bg: rgba(212,160,23,0.1);
+
+  /* Sidebar */
+  --ifm-sidebar-width:         272px;
+  --ifm-menu-color:            #4a5568;
+  --ifm-menu-color-active:     #3D4B6F;
+
+  /* Link */
+  --ifm-link-color:            #3D4B6F;
+  --ifm-link-hover-color:      #273055;
+
+  /* Brand tokens for prose */
+  --pp-mustard: #D4A017;
+  --pp-coral:   #C0533A;
+  --pp-green:   #3A7D56;
+  --pp-slate:   #3D4B6F;
+  --pp-mono:    'JetBrains Mono', monospace;
+}
+
+/* ────────────────────────────────────────────────
+   Dark mode
+─────────────────────────────────────────────────── */
+[data-theme='dark'] {
+  --ifm-color-primary:          #D4A017;
+  --ifm-color-primary-dark:     #c09215;
+  --ifm-color-primary-darker:   #b68912;
+  --ifm-color-primary-darkest:  #956f0f;
+  --ifm-color-primary-light:    #e8ae1a;
+  --ifm-color-primary-lighter:  #ebb51d;
+  --ifm-color-primary-lightest: #f0bc25;
+
+  --ifm-background-color:            #0A0E1A;
+  --ifm-background-surface-color:    #0D1120;
+  --ifm-navbar-background-color:     #0A0E1A;
+  --ifm-footer-background-color:     #0D1120;
+  --ifm-color-emphasis-200:    #1A2234;
+  --ifm-color-emphasis-300:    #1A2234;
+  --ifm-code-background:       #111827;
+  --docusaurus-highlighted-code-line-bg: rgba(212,160,23,0.12);
+  --ifm-menu-color:            #9BA5BC;
+}
+
+/* ────────────────────────────────────────────────
+   Base
+─────────────────────────────────────────────────── */
+body {
+  font-family: var(--ifm-font-family-base);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--ifm-heading-font-family);
+  letter-spacing: -0.02em;
+}
+
+/* ────────────────────────────────────────────────
+   Navbar — mirrors docs.stripe.com top bar
+   Row 1: Logo + "Priorities.ai Docs"  |  Search  |  Create account  Sign in
+   Row 2: secondary nav (injected via Navbar swizzle)
+─────────────────────────────────────────────────── */
+.navbar {
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
+  box-shadow: none;
+  height: 60px;
+  padding: 0 24px;
+}
+
+/* Logo icon */
+.navbar__logo img { height: 22px; width: auto; }
+
+/* Brand: "Priorities.ai" title + "Docs" tag via CSS */
+.navbar__title {
+  font-family: var(--ifm-font-family-base);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ifm-heading-color);
+}
+.navbar__title::after {
+  content: 'Docs';
+  font-size: 0.6rem;
+  font-family: var(--pp-mono);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #888;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 4px;
+  padding: 1px 5px;
+  margin-left: 8px;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
+
+/* Right-side links spacing */
+.navbar__items--right { gap: 4px; }
+
+/* Muted "Create account" link */
+.navbar__link-muted {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #555 !important;
+  padding: 6px 10px !important;
+}
+.navbar__link-muted:hover { color: var(--ifm-heading-color) !important; text-decoration: none; }
+
+/* "Sign in" as an outlined button */
+.navbar__link-signin {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--ifm-heading-color) !important;
+  border: 1.5px solid var(--ifm-color-emphasis-300);
+  border-radius: 6px;
+  padding: 5px 14px !important;
+  transition: border-color 0.15s, background 0.15s;
+}
+.navbar__link-signin:hover {
+  border-color: var(--ifm-color-primary);
+  background: var(--ifm-background-surface-color);
+  text-decoration: none;
+}
+
+/* Offset main content so secondary nav doesn't overlap */
+.main-wrapper { padding-top: 44px; }
+/* But not on the homepage (no padding-top needed there) */
+.homepage-wrapper { padding-top: 0; }
+
+/* Offset content area below the secondary nav bar */
+:global(.main-wrapper) {
+  padding-top: 44px !important;
+}
+/* But home page manages its own offset */
+:global(.homepageWrapper .main-wrapper) {
+  padding-top: 0 !important;
+}
+
+/* ────────────────────────────────────────────────
+   Sidebar
+─────────────────────────────────────────────────── */
+.menu__link {
+  font-size: 0.875rem;
+  border-radius: 4px;
+  font-weight: 400;
+}
+.menu__link--active {
+  font-weight: 600;
+}
+.menu__list-item-collapsible .menu__link {
+  font-family: var(--pp-mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ifm-menu-color);
+}
+
+/* ────────────────────────────────────────────────
+   Code blocks
+─────────────────────────────────────────────────── */
+code:not([class*='language-']) {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  background: var(--ifm-code-background);
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+  font-size: 0.875em;
+}
+
+.prism-code {
+  font-size: 0.8125rem;
+  line-height: 1.65;
+}
+
+/* Method color classes */
+.method-get    { color: #3A7D56; font-family: var(--pp-mono); font-size: 0.75rem; font-weight: 700; }
+.method-post   { color: #2563eb; font-family: var(--pp-mono); font-size: 0.75rem; font-weight: 700; }
+.method-patch  { color: #d97706; font-family: var(--pp-mono); font-size: 0.75rem; font-weight: 700; }
+.method-delete { color: #dc2626; font-family: var(--pp-mono); font-size: 0.75rem; font-weight: 700; }
+
+/* ────────────────────────────────────────────────
+   Tables
+─────────────────────────────────────────────────── */
+table th {
+  font-family: var(--pp-mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #888;
+}
+
+/* ────────────────────────────────────────────────
+   Footer
+─────────────────────────────────────────────────── */
+.footer {
+  border-top: 1px solid var(--ifm-color-emphasis-300);
+}
+.footer__title {
+  font-family: var(--pp-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.footer__copyright {
+  font-size: 0.8rem;
+}
+
+/* ────────────────────────────────────────────────
+   Breadcrumbs
+─────────────────────────────────────────────────── */
+.breadcrumbs__item--active .breadcrumbs__link {
+  color: var(--ifm-color-primary);
+  font-weight: 500;
+}
