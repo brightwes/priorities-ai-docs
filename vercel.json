@@ -1,5 +1,5 @@
 {
-  "framework": "docusaurus2",
+  "framework": "docusaurus-2",
   "buildCommand": "npm ci && npm run build",
   "outputDirectory": "build",
   "installCommand": "npm ci"
