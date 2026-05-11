@@ -365,7 +365,9 @@ Marks a proposal as accepted — the authoritative value for this attribute on t
 
 ## What's next
 
-- [Item frames](/docs/api/items/items-attributes) — interpretive frames (problem/opportunity/risk/etc.) and altitude
-- [Item relationships](/docs/api/items/items-relationships) — declare dependencies, packages, aggregations
+- [Item Classification API](/docs/api/items/items-classification) — frames, altitude, and canonical frame
+- [Item Relationships API](/docs/api/items/items-relationships) — dependencies, packages, aggregations
+- [Item Attributes API](/docs/api/items/items-attributes) — value proposals and scoring
+- [Item Activity API](/docs/api/items/items-activity) — provenance, history, and discussion
 - [Tracks API](/docs/api/tracks) — how items enter a track's item pool for scoring
 - [Core concepts: items and their lifecycle](/docs/start/core-concepts)
