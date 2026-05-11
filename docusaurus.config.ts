@@ -39,7 +39,7 @@ const config: Config = {
       'classic',
       {
         docs: {
-          path: '../website/content/docs',
+          path: 'docs',
           routeBasePath: '/',
           sidebarPath: './sidebars.ts',
           editUrl: 'https://github.com/priorities-ai/priorities-ai/edit/main/',
