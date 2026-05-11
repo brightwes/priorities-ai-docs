@@ -212,8 +212,204 @@ curl -X POST "$PAI_BASE/cycles/cycle-uuid/transition" \
 
 ---
 
+---
+
+## Delete a cycle
+
+```
+DELETE /v1/cycles/:id
+```
+
+**Scopes:** `cycles:write`
+
+---
+
+## Create a track
+
+```
+POST /v1/cycles/:id/tracks
+```
+
+**Scopes:** `cycles:write`
+
+Creates a new track inside this cycle. The track is automatically `cycle_linked` with `is_standalone: false`.
+
+**Body:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `name` | string | **required** | Track name |
+| `description` | string | | Track description |
+| `category` | string | | Item category this track evaluates |
+| `altitude` | integer | | Altitude level (1–5) |
+
+---
+
+## Participants
+
+Effective cycle participants are the union of direct users (`cycle_participants`) and group members (`cycle_participant_groups`). Both are resolved at runtime.
+
+### List participants
+
+```
+GET /v1/cycles/:id/participants
+```
+
+**Scopes:** `cycles:read`
+
+Returns `{ direct: [...], groups: [...] }`.
+
+### Add a participant
+
+```
+POST /v1/cycles/:id/participants
+```
+
+**Scopes:** `cycles:write`
+
+**Body:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `user_id` | uuid | one of | Direct user participant |
+| `group_id` | uuid | one of | Group participant |
+| `role` | string | | `contributor` (default) or `facilitator` |
+| `added_by` | uuid | | Actor performing the addition |
+
+### Remove a participant
+
+```
+DELETE /v1/cycles/:id/participants/:uid
+```
+
+**Scopes:** `cycles:write`
+
+`:uid` is either a `user_id` or `group_id`.
+
+---
+
+## Criteria
+
+Criteria are the evaluation dimensions for scoring items in this cycle's tracks. Each row in `cycle_attribute_configs` represents one criterion on one track.
+
+### List criteria
+
+```
+GET /v1/cycles/:id/criteria
+```
+
+**Scopes:** `cycles:read`
+
+**Query parameters:**
+
+| Name | Type | Description |
+|---|---|---|
+| `track_id` | uuid | Filter to a specific track within this cycle |
+
+Returns `cycle_attribute_configs` rows including `attribute_key`, `range_status` (`pending` → `proposed` → `accepted`), `range_value` (the accepted scale), and governance role assignments.
+
+### Create a criterion
+
+```
+POST /v1/cycles/:id/criteria
+```
+
+**Scopes:** `cycles:write`
+
+**Body:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `attribute_key` | string | **required** | Criterion identifier (e.g. `business_value`, `technical_effort`) |
+| `track_id` | uuid | | Track to scope this criterion to |
+| `range_definer_roles` | string[] | | Roles allowed to propose the value range |
+| `range_approver_roles` | string[] | | Roles allowed to accept the value range |
+| `value_proposer_roles` | string[] | | Roles allowed to submit value proposals (S5) |
+| `value_approver_roles` | string[] | | Roles allowed to accept value proposals (S5) |
+| `collection_method` | string | | How values are collected (`individual`, `facilitated`, `system`) |
+| `requires_evidence` | boolean | | Whether evidence is required for a proposal |
+
+### Update a criterion
+
+```
+PATCH /v1/cycles/:id/criteria/:cid
+```
+
+**Scopes:** `cycles:write`
+
+Updates any criterion field. `cycle_id` is immutable.
+
+---
+
+## Item pool
+
+```
+GET /v1/cycles/:id/item-pool
+```
+
+**Scopes:** `cycles:read`
+
+Returns all item pools belonging to tracks in this cycle. Each pool includes `priority_ids` (ordered item UUIDs) and `pool_locked_at`.
+
+To manage pool membership at the track level, use the [Tracks API](/docs/api/tracks).
+
+---
+
+## Approve priority list
+
+```
+POST /v1/cycles/:id/approve-priority-list
+```
+
+**Scopes:** `cycles:write`
+
+**Authority transition (§2.3a).** Calls the `approve_priority_list` RPC. Atomically sets `leadership_approved = true` on the specified items and emits a `priority_list_approved` governance event. This is the non-Catchball path — use this when approving an item pool's above-cut items directly.
+
+**Body:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `actor_id` | uuid | **required** | Leader approving the list |
+| `item_ids` | uuid[] | **required** | Items to approve (must be non-empty) |
+| `loop_id` | uuid | | Catchball loop ID (if approving via Catchball path) |
+| `note` | string | | Reason recorded in governance event |
+
+**Request:**
+
+```bash
+curl -X POST "$PAI_BASE/cycles/cycle-uuid/approve-priority-list" \
+  -H "Authorization: Bearer $PAI_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "actor_id": "exec-user-uuid",
+    "item_ids": ["item-uuid-1", "item-uuid-2", "item-uuid-3"],
+    "note": "Q3 strategic slate approved after executive review"
+  }'
+```
+
+**Response:**
+
+```json
+{
+  "data": {
+    "success": true,
+    "approvedCount": 3,
+    "approvedAt": "2026-04-15T14:30:00Z",
+    "approvedBy": "exec-user-uuid",
+    "governanceEventId": "gov-event-uuid",
+    "source": "item_pool"
+  },
+  "meta": { "workspace_id": "...", "request_id": "..." }
+}
+```
+
+> **Governance:** Every approval is recorded in `governance_events` with `event_type = priority_list_approved`. This appears in `GET /v1/governance-events` and is delivered to webhooks subscribed to `governance.priority_list_approved`.
+
+---
+
 ## What's next
 
+- [Tracks API](/docs/api/tracks) — manage tracks, participants, item pools, criteria, and readiness
 - [Sessions API](/docs/api/sessions) — create sessions within a cycle
 - [Catchball API](/docs/api/catchball) — manage authority exchanges within a cycle
 - [Concepts: state machines](/docs/concepts/state-machines) — cycle, session, and POR state machines

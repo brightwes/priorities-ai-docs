@@ -190,8 +190,182 @@ Exit status is one of four orthogonal state machines on an item. It does not det
 
 ---
 
+---
+
+## Bulk import
+
+```
+POST /v1/items/bulk
+```
+
+**Scopes:** `items:write`
+
+Upserts up to 500 items in a single request. Rows with an existing `id` update; rows without an `id` insert. All rows must include `name`.
+
+**Body:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `items` | array | **required** | Array of item objects (max 500) |
+
+---
+
+## Lineage
+
+```
+GET /v1/items/:id/lineage
+```
+
+**Scopes:** `items:read`
+
+Returns all lineage events where this item appears as a source or target. Lineage events record the provenance of structural changes — when an item was split into multiple items, merged with another, superseded, forked, or retired.
+
+**Event types:** `split`, `merge`, `supersede`, `fork`, `retire`
+
+**Response:**
+
+```json
+{
+  "data": [
+    {
+      "id": "event-uuid",
+      "event_type": "split",
+      "source_item_ids": ["a1b2c3d4-..."],
+      "target_item_ids": ["new-uuid-1", "new-uuid-2"],
+      "performed_by": "user-uuid",
+      "rationale": "Scope was too broad for a single track",
+      "workspace_id": "...",
+      "created_at": "2026-04-10T09:00:00Z"
+    }
+  ],
+  "meta": { "workspace_id": "...", "request_id": "..." }
+}
+```
+
+---
+
+## Comments
+
+Threaded discussion attached to an item. Comments support one level of replies via `reply_to_id`.
+
+### List comments
+
+```
+GET /v1/items/:id/comments
+```
+
+**Scopes:** `items:read`
+
+Returns comments in chronological order, including replies.
+
+### Post a comment
+
+```
+POST /v1/items/:id/comments
+```
+
+**Scopes:** `items:write`
+
+**Body:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `author_id` | uuid | **required** | User posting the comment |
+| `author_name` | string | | Display name (cached at write time) |
+| `body` | string | **required** | Comment text |
+| `reply_to_id` | uuid | | Root comment being replied to |
+
+### Delete a comment
+
+```
+DELETE /v1/items/:id/comments/:commentId
+```
+
+**Scopes:** `items:write`
+
+Only the comment author or a workspace admin should call this.
+
+---
+
+## Value proposals
+
+Value proposals are S5 (Item Scoring) inputs — a participant's proposed value for a specific scoring criterion on this item. Proposals move through `proposed → accepted` status.
+
+### List value proposals
+
+```
+GET /v1/items/:id/value-proposals
+```
+
+**Scopes:** `items:read`
+
+**Query parameters:**
+
+| Name | Type | Description |
+|---|---|---|
+| `status` | string | Filter by status (`proposed`, `accepted`) |
+
+**Response:**
+
+```json
+{
+  "data": [
+    {
+      "id": "proposal-uuid",
+      "item_id": "a1b2c3d4-...",
+      "attribute_key": "business_value",
+      "value": 8,
+      "status": "proposed",
+      "proposed_by": "user-uuid",
+      "proposed_at": "2026-04-12T10:00:00Z",
+      "session_id": "session-uuid",
+      "track_id": "track-uuid"
+    }
+  ],
+  "meta": { "workspace_id": "...", "request_id": "..." }
+}
+```
+
+### Submit a value proposal
+
+```
+POST /v1/items/:id/value-proposals
+```
+
+**Scopes:** `items:write`
+
+**Body:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `attribute_key` | string | **required** | The criterion being scored (e.g. `business_value`, `technical_effort`) |
+| `value` | any | **required** | The proposed value (stored as JSONB — may be a number, string, or object) |
+| `proposed_by` | uuid | **required** | User submitting the proposal |
+| `session_id` | uuid | | Session context for this proposal |
+| `track_id` | uuid | | Track context |
+| `rationale` | string | | Justification for this value |
+
+### Accept a value proposal
+
+```
+POST /v1/items/:id/value-proposals/:proposalId/accept
+```
+
+**Scopes:** `items:write`
+
+Marks a proposal as accepted — the authoritative value for this attribute on this item within the scoring context.
+
+**Body:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `accepted_by` | uuid | **required** | User accepting the proposal |
+
+---
+
 ## What's next
 
-- [Item relationships](/docs/api/items-relationships) — declare dependencies, blocs, aggregations
-- [Item attributes](/docs/api/items-attributes) — attach RICE frames, sizing, custom attributes
+- [Item frames](/docs/api/items/items-attributes) — interpretive frames (problem/opportunity/risk/etc.) and altitude
+- [Item relationships](/docs/api/items/items-relationships) — declare dependencies, packages, aggregations
+- [Tracks API](/docs/api/tracks) — how items enter a track's item pool for scoring
 - [Core concepts: items and their lifecycle](/docs/start/core-concepts)

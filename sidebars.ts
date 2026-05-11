@@ -57,9 +57,11 @@ const sidebars: SidebarsConfig = {
       collapsed: true,
       items: [
         'api/index',
+        'api/items/items',
         'api/items/items-attributes',
         'api/items/items-relationships',
         'api/cycles',
+        'api/tracks',
         'api/sessions',
         'api/tool-sessions',
         'api/catchball',

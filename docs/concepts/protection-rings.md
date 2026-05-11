@@ -32,7 +32,7 @@ A change is comparability-affecting if it would meaningfully change how this ite
 - Item Category change
 - Altitude change
 - Any change to a scored attribute that is a criterion in an active session
-- Adding or removing a Bloc membership
+- Adding or removing a Package membership
 - Adding a hard Dependency to or from this item
 - Lineage transformation (split, merge, supersede)
 

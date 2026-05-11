@@ -19,7 +19,7 @@ Three primitives. One consistent API. Full decision provenance on every output.
 | Primitive | What it does | Start here |
 |-----------|--------------|-----------|
 | **Prioritization Logic** | Create cycles, run sessions, collect tool responses, publish ranked outputs with full governance | [Items](/docs/api/items) → [Cycles](/docs/api/cycles) → [Sessions](/docs/api/sessions) |
-| **Item Relationship Graph** | Typed, mutation-governed, auditable relationship graph: Cluster, Bloc, Dependency, Aggregation, Elaboration, Lineage | [Item Relationships](/docs/api/items-relationships) |
+| **Item Relationship Graph** | Typed, mutation-governed, auditable relationship graph: Cluster, Package, Dependency, Prerequisite, Aggregation, Breakdown, Elaboration, Reframe, Lineage, Collection | [Item Relationships](/docs/api/items/items-relationships) |
 | **Decision Traceability** | Typed decision stream — every priority queryable to its rationale, criteria, and governance events | [Decisions](/docs/api/decisions) (coming soon) |
 
 ---

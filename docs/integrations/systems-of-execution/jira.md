@@ -21,7 +21,7 @@ When a `priority_list.approved` event fires, the Jira connector:
 1. Creates or updates a Jira epic for each item in the list
 2. Sets a `Priority Rank` custom field to the item's rank
 3. Attaches the decision rationale to the epic description
-4. Links related epics where Priorities.ai Bloc or Dependency relationships exist
+4. Links related epics where Priorities.ai Package or Dependency relationships exist
 
 ---
 
@@ -104,7 +104,7 @@ Each item in the published list generates a Jira issue with:
 - **Description:** Item description + rationale from the decision record
 - **Custom field (Priority Rank):** Rank in the published list (1 = highest)
 - **Labels:** `priorities-ai-managed`, cycle name
-- **Links:** Jira issue links for Bloc members and hard Dependencies
+- **Links:** Jira issue links for Package members and hard Dependencies
 
 ---
 

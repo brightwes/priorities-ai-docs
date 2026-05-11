@@ -145,7 +145,7 @@ Common causes:
 | Message | Cause |
 |---------|-------|
 | `Item is in an active session (Ring 1 protected). A comparability-affecting change requires admin approval.` | Attempting to change a comparability-affecting field on a Ring 1 item |
-| `Bloc member cannot be committed without all Bloc members present in scope.` | Attempting to commit a Bloc member when other Bloc members are not in scope |
+| `Package member cannot be committed without all Package members present in scope.` | Attempting to commit a Package member when other Package members are not in scope |
 | `Hard dependency on :item_id must be explicitly addressed before this item can receive a commitment-quality disposition.` | Attempting to commit an item with an unresolved hard Dependency |
 | `Session criteria cannot be modified after CRITERIA_FINALIZED.` | Attempting to change criteria after finalization |
 | `Track Cell is empty. Item cannot participate in a Track-scoped session.` | Attempting to include an item with `classification_state: empty` in a session |

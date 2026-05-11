@@ -44,27 +44,30 @@ The API for running a complete prioritization process — from item intake to pu
 
 Items in most tools are flat — a list of tickets or a backlog row. Priorities.ai maintains a typed, mutation-governed relationship graph on every item.
 
-**Seven relationship types:**
+**Ten relationship types:**
 
 | Type | Axis | What it means |
 |------|------|---------------|
 | `Cluster` (duplicate, variant) | Horizontal | Identity or near-identity — items that may be the same thing |
-| `Related` | Horizontal | Proximity — worth considering together, no enforcement weight |
-| `Bloc` | Horizontal | Atomicity — these items must be selected together or not at all |
-| `Dependency` (informational, soft, hard) | Horizontal | Prioritization constraint — the treatment of one item must account for another |
-| `Aggregation` | Vertical | Composition — parent rolls up child items |
+| `Package` | Horizontal | Atomicity — these items must be selected together or not at all |
+| `Dependency` (informational, soft, hard) | Horizontal | Constraint asserted by the dependent item — B depends on A |
+| `Prerequisite` (informational, soft, hard) | Horizontal | Constraint asserted by the required item — A enables B |
+| `Aggregation` | Vertical | Composition bottom-up — child asserts "I am part of P" |
+| `Breakdown` | Vertical | Decomposition top-down — parent asserts "My parts are C1, C2, …" |
 | `Elaboration` (spectrum, variant) | Vertical | Response — children are alternative approaches to a parent need |
+| `Reframe` | Framing | Perspective — same reality described from a different lens |
 | `Lineage` (split, merge, supersede, retire, fork) | Temporal | Structural transformation — where an item came from or went |
+| `Collection` | Curatorial | User-curated grouping — no governance weight |
 
 **Why this matters for integrations:**
 
-When you write a priority output back to Jira, you need to know if an item is a Bloc member (the whole Bloc should be committed together), has hard Dependencies (those must be addressed before the commitment is fully legitimate), or is part of an Aggregation (child dependencies surface at parent commitment time).
+When you write a priority output back to Jira, you need to know if an item is a Package member (the whole Package must be committed together), has hard Dependencies (those must be addressed before the commitment is fully legitimate), or is part of an Aggregation (child dependencies surface at parent commitment time).
 
 A flat list of ranked items is not enough information to produce a correct execution plan. The relationship graph is the information that makes the ranked list safe to act on.
 
 **Enforcement rules:**
 
-Relationships are not passive labels. A `hard` Dependency blocks commitment-quality prioritization disposition until the dependency condition is explicitly addressed. A `Bloc` with only some members in the comparison scope blocks commitment-quality decisions on any Bloc member. These rules are enforced by the platform and surfaced via API responses.
+Relationships are not passive labels. A `hard` Dependency blocks commitment-quality prioritization disposition until the dependency condition is explicitly addressed. A `Package` with only some members in the comparison scope blocks commitment-quality decisions on any Package member. These rules are enforced by the platform and surfaced via API responses.
 
 ---
 
