@@ -57,26 +57,19 @@ const sidebars: SidebarsConfig = {
       collapsed: true,
       items: [
         'api/index',
-        {
-          type: 'category',
-          label: 'Items',
-          items: [
-            'api/items',
-            'api/items-relationships',
-            'api/items-attributes',
-          ],
-        },
+        'api/items/items-attributes',
+        'api/items/items-relationships',
         'api/cycles',
         'api/sessions',
         'api/tool-sessions',
         'api/catchball',
         {
           type: 'category',
-          label: 'Decisions & events',
+          label: 'Decisions & Events',
+          link: { type: 'doc', id: 'api/events/decisions' },
           items: [
-            'api/decisions',
-            'api/governance-events',
-            'api/audit-events',
+            'api/events/governance-events',
+            'api/events/audit-events',
           ],
         },
         'api/reports',
