@@ -7,7 +7,7 @@ const config: Config = {
   tagline: 'Prioritization infrastructure for the modern enterprise.',
   favicon: 'img/favicon.svg',
 
-  url: 'https://docs.priorities.ai',
+  url: 'https://priorities-ai-docs.vercel.app',
   baseUrl: '/',
 
   organizationName: 'priorities-ai',
