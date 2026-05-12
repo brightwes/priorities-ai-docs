@@ -76,6 +76,25 @@ const sidebars: SidebarsConfig = {
             'api/events/audit-events',
           ],
         },
+        {
+          type: 'category',
+          label: 'Strategy',
+          link: { type: 'doc', id: 'api/strategies' },
+          items: [
+            'api/desired-outcomes',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Clarity Tools',
+          items: [
+            'api/clarity-tools/outcome-drivers',
+            'api/clarity-tools/backplan',
+            'api/clarity-tools/open-questions',
+            'api/clarity-tools/methodology-connections',
+            'api/clarity-tools/export',
+          ],
+        },
         'api/reports',
         'api/webhooks',
         'api/workspace',

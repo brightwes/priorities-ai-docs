@@ -210,7 +210,59 @@ Upserts up to 500 items in a single request. Rows with an existing `id` update; 
 
 ---
 
-## Lineage
+## Provenance and Lineage
+
+**Provenance** is an operation you assert on an item — a discrete, named event with real semantic consequences (Supersede, Split, Merge, Fork, Retire). **Lineage** is the system-level record that results from asserting provenance: the traversable history of how items moved and transformed over time. Asserting a provenance operation writes a lineage record.
+
+### Assert a provenance operation
+
+```
+POST /v1/items/provenance
+```
+
+**Scopes:** `items:write`
+
+Records a provenance operation, writing the resulting lineage record to `lineage_events`.
+
+**Body:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `event_type` | string | **required** | `supersede`, `split`, `merge`, `fork`, or `retire` |
+| `performed_by` | uuid | **required** | User asserting the provenance operation |
+| `source_item_ids` | array | | Item UUIDs that are the source (the "before") |
+| `target_item_ids` | array | | Item UUIDs that are the result (the "after") |
+| `rationale` | string | | Why this operation was performed |
+| `metadata` | object | | Arbitrary additional context |
+
+At least one of `source_item_ids` or `target_item_ids` is required.
+
+| Operation | Source | Target | Meaning |
+|---|---|---|---|
+| `supersede` | 1 item | 1 item | Source is replaced by target |
+| `split` | 1 item | 2+ items | Source becomes multiple targets |
+| `merge` | 2+ items | 1 item | Sources combine into one target |
+| `fork` | 1 item | 1 item | Source branches; both remain active |
+| `retire` | 1+ items | none | Source(s) archived with no replacement |
+
+**Request:**
+
+```bash
+curl -X POST "$PAI_BASE/items/provenance" \
+  -H "Authorization: Bearer $PAI_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "event_type": "split",
+    "source_item_ids": ["a1b2c3d4-..."],
+    "target_item_ids": ["new-uuid-1", "new-uuid-2"],
+    "performed_by": "user-uuid",
+    "rationale": "Scope was too broad for a single track — separated infra and product work."
+  }'
+```
+
+**Response:** `201 Created` — the created lineage event record.
+
+### Read lineage for an item
 
 ```
 GET /v1/items/:id/lineage
@@ -218,9 +270,7 @@ GET /v1/items/:id/lineage
 
 **Scopes:** `items:read`
 
-Returns all lineage events where this item appears as a source or target. Lineage events record the provenance of structural changes — when an item was split into multiple items, merged with another, superseded, forked, or retired.
-
-**Event types:** `split`, `merge`, `supersede`, `fork`, `retire`
+Returns all lineage events where this item appears as a source or target, ordered newest first.
 
 **Response:**
 

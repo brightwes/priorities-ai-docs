@@ -73,7 +73,7 @@ See [Error codes](/docs/reference/errors) for the full table.
 
 | Resource | Endpoints | Shipped |
 |----------|-----------|---------|
-| [Items](/docs/api/items/items) | List, create, get, update, delete, bulk import; lineage, comments, value proposals, classification, per-item audit events | ✅ |
+| [Items](/docs/api/items/items) | List, create, get, update, delete, bulk import; provenance assertions, lineage read, comments, value proposals, classification, per-item audit events | ✅ |
 | [Item Relationships](/docs/api/items/items-relationships) | List, create, delete | ✅ |
 | [Item Attributes](/docs/api/items/items-attributes) | List frames, upsert frames, delete frame | ✅ |
 
@@ -95,6 +95,15 @@ See [Error codes](/docs/reference/errors) for the full table.
 | [Decisions](/docs/api/events/decisions) | List, get, create manual, update status | ✅ |
 | [Governance Events](/docs/api/events/governance-events) | List, filtered by entity | ✅ |
 | [Audit Events](/docs/api/events/audit-events) | List workspace-wide or per item | ✅ |
+
+**Strategy**
+
+| Resource | Endpoints | Shipped |
+|----------|-----------|---------|
+| [Strategies](/docs/api/strategies) | CRUD; nested objectives and goals views | ✅ |
+| [Objectives](/docs/api/strategies) | CRUD; priority mappings (item-to-objective alignment) | ✅ |
+| [Goals](/docs/api/strategies) | CRUD; metric tracking columns | ✅ |
+| [Desired Outcomes](/docs/api/desired-outcomes) | CRUD; structured evidence and obstacle fields | ✅ |
 
 **Clarity tools**
 
@@ -148,3 +157,7 @@ See [Authentication](/docs/start/authentication) for the full scopes table.
 | `decisions:write` | Create manual decisions, update status |
 | `governance:read` | Governance events |
 | `audit:read` | Audit events |
+| `strategies:read` | Strategies, objectives, goals |
+| `strategies:write` | Create/update/delete strategies, objectives, goals, priority mappings |
+| `desired-outcomes:read` | Desired Outcomes |
+| `desired-outcomes:write` | Create/update/delete Desired Outcomes |
