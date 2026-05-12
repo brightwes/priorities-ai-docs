@@ -81,12 +81,22 @@ See [Error codes](/docs/reference/errors) for the full table.
 
 | Resource | Endpoints | Shipped |
 |----------|-----------|---------|
-| [Cycles](/docs/api/cycles) | List, create, get, update, delete; tracks, participants, criteria, item pool, approve priority list, phase transition | ✅ |
-| [Tracks](/docs/api/tracks) | List, create, get, update, delete; sessions, participants, item pool, criteria, readiness | ✅ |
+| [Cycles](/docs/api/cycles) | List, create, get, update, delete; tracks, participants, criteria, item pool, tool readiness, approve priority list, phase transition | ✅ |
+| [Tracks](/docs/api/tracks) | List, create, get, update, delete; sessions, participants, item pool + lock/unlock, criteria, S1–S6 readiness | ✅ |
 | [Sessions](/docs/api/sessions) | List, create, get, update, delete; results, state transition, close; participants, messages, artifacts | ✅ |
 | [Tool Sessions](/docs/api/tool-sessions) | List, create, get, update; responses, finalize (aggregation for 13 tool types) | ✅ |
 | [Catchball](/docs/api/catchball) | Proposals, loops, threads, accept, return, reject | ✅ |
 | [Reports](/docs/api/reports) | Session report, cycle report, items export | ✅ |
+
+**Planning layer**
+
+| Resource | Endpoints | Shipped |
+|----------|-----------|---------|
+| [Plan Cycles](/docs/api/plan-cycles) | CRUD; versioned plan snapshots, Plan of Record authorization, initiatives, work units | ✅ |
+| [Decision Rights](/docs/api/decision-rights) | CRUD; RPC-backed delegation and revocation | ✅ |
+| [Stakeholder Pulses](/docs/api/stakeholder-pulses) | CRUD; track sent/viewed/responded lifecycle | ✅ |
+| [OST](/docs/api/ost) | Opportunity Solution Trees CRUD; nodes CRUD | ✅ |
+| [Workflows](/docs/api/workflows) | CRUD; seed five canonical presets | ✅ |
 
 **Decisions & events**
 
@@ -130,14 +140,14 @@ See [Authentication](/docs/start/authentication) for the full scopes table.
 
 | Scope | Grants access to |
 |-------|----------------|
-| `items:read` | Items, relationships, attributes |
-| `items:write` | Create/update/delete items and attributes |
+| `items:read` | Items, relationships, attributes, OST trees |
+| `items:write` | Create/update/delete items, attributes, OST |
 | `sessions:read` | Sessions and results |
 | `sessions:write` | Session lifecycle |
 | `tool_sessions:read` | Tool sessions and responses |
 | `tool_sessions:write` | Tool session lifecycle |
-| `cycles:read` | Cycles and tracks |
-| `cycles:write` | Cycles and phase transitions |
+| `cycles:read` | Cycles, tracks, plan cycles, decision rights, stakeholder pulses, workflows |
+| `cycles:write` | Cycles, phase transitions, planning layer mutations |
 | `catchball:read` | Proposals, loops, threads |
 | `catchball:write` | Submit and resolve proposals |
 | `workspace:read` | Settings, members, connectors |

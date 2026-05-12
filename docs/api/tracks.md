@@ -346,6 +346,57 @@ curl -X DELETE "$PAI_BASE/tracks/track-uuid/item-pool/a1b2c3d4-..." \
 
 ---
 
+### Lock the item pool
+
+```
+POST /v1/tracks/:id/item-pool/lock
+```
+
+**Scopes:** `cycles:write`
+
+Locks the item pool by stamping `pool_locked_at = NOW()` on all pool rows for this track. Locking is required for Stage 2 (Pool) readiness. Once locked, the pool is considered final for S2–S6 readiness checks.
+
+**Optional body:** `locked_by` (user UUID)
+
+**Request:**
+
+```bash
+curl -X POST "$PAI_BASE/tracks/track-uuid/item-pool/lock" \
+  -H "Authorization: Bearer $PAI_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{ "locked_by": "user-uuid" }'
+```
+
+**Response:**
+
+```json
+{
+  "data": { "track_id": "track-uuid", "locked": true, "pools_updated": 4 },
+  "meta": { "workspace_id": "...", "request_id": "..." }
+}
+```
+
+### Unlock the item pool
+
+```
+DELETE /v1/tracks/:id/item-pool/lock
+```
+
+**Scopes:** `cycles:write`
+
+Clears `pool_locked_at` to re-open the pool for modifications. Re-lock when assembly is complete.
+
+**Response:**
+
+```json
+{
+  "data": { "track_id": "track-uuid", "locked": false, "pools_updated": 4 },
+  "meta": { "workspace_id": "...", "request_id": "..." }
+}
+```
+
+---
+
 ## Criteria
 
 Criteria are the evaluation dimensions participants score items against (Stage 3 — Criteria Selection, Stage 4 — Scales). Each criterion maps to a `cycle_attribute_configs` row.

@@ -78,6 +78,17 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
+          label: 'Planning Layer',
+          items: [
+            'api/plan-cycles',
+            'api/decision-rights',
+            'api/stakeholder-pulses',
+            'api/ost',
+            'api/workflows',
+          ],
+        },
+        {
+          type: 'category',
           label: 'Strategy',
           link: { type: 'doc', id: 'api/strategies' },
           items: [

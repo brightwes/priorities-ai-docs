@@ -423,6 +423,65 @@ curl -X POST "$PAI_BASE/cycles/cycle-uuid/approve-priority-list" \
 
 ---
 
+## Tool readiness
+
+```
+GET /v1/cycles/:id/tool-readiness
+```
+
+**Scopes:** `cycles:read`
+
+Evaluates which prioritization tools are available for this cycle based on workflow state (pool locked, criteria defined, values entered). Returns structured blocker objects — not disabled flags — so the UI can show specific diagnostic guidance.
+
+**Query params:** `tool_name` (optional) — evaluates a single tool. If omitted, evaluates all 18 registered tools.
+
+**Single tool request:**
+
+```bash
+curl "$PAI_BASE/cycles/cycle-uuid/tool-readiness?tool_name=rice" \
+  -H "Authorization: Bearer $PAI_KEY"
+```
+
+**Single tool response:**
+
+```json
+{
+  "data": {
+    "tool_name": "rice",
+    "cycle_id": "cycle-uuid",
+    "available": false,
+    "evaluated_at": "2026-05-11T20:00:00Z",
+    "blockers": [
+      {
+        "code": "POOL_LOCKED",
+        "title": "Item pool not locked",
+        "why_it_matters": "RICE requires a stable, locked item set to produce comparable scores.",
+        "current_state": "Pool contains 12 items but is not locked.",
+        "remediation_route": "POST /v1/tracks/:id/item-pool/lock"
+      }
+    ]
+  }
+}
+```
+
+**All tools response:**
+
+```json
+{
+  "data": {
+    "cycle_id": "cycle-uuid",
+    "evaluated_at": "2026-05-11T20:00:00Z",
+    "tools": {
+      "rice": { "available": false, "blockers": [...] },
+      "dot_voting": { "available": true, "blockers": [] },
+      "moscow": { "available": true, "blockers": [] }
+    }
+  }
+}
+```
+
+---
+
 ## What's next
 
 - [Tracks API](/docs/api/tracks) — manage tracks, participants, item pools, criteria, and readiness
