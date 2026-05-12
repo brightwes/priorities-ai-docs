@@ -7,13 +7,26 @@ audience: Developers
 status: published
 ---
 
+import DocsSystemMapDiagram from '@site/src/diagram-kit/DocsSystemMapDiagram';
+import DocsCatchballLoopDiagram from '@site/src/diagram-kit/DocsCatchballLoopDiagram';
+
 # Catchball
 
 Catchball is the bidirectional alignment mechanism. Teams submit proposals; authorities review, accept, return, or reject. Every exchange is recorded.
 
-See [Concepts: Catchball and authority](/docs/concepts/catchball-and-authority) for the full model.
+See [Concepts: Catchball and authority](/concepts/catchball-and-authority) for the full model.
 
 All Catchball state changes route through RPCs. Direct table writes for proposals or loop states are rejected.
+
+<details className="margin-bottom--md">
+  <summary>Functional map — where Catchball sits</summary>
+  <DocsSystemMapDiagram />
+</details>
+
+<details className="margin-bottom--md">
+  <summary>Loop choreography — one iteration</summary>
+  <DocsCatchballLoopDiagram />
+</details>
 
 ---
 
@@ -30,7 +43,6 @@ GET /v1/catchball/loops
 | Name | Type | Description |
 |------|------|-------------|
 | `cycle_id` | uuid | Filter by cycle |
-| `state` | string | Filter by loop state |
 
 ---
 
@@ -52,7 +64,15 @@ GET /v1/catchball/proposals
 
 **Scopes:** `catchball:read`
 
-**Query parameters:** `loop_id`, `state`, `submitter_id`
+**Query parameters:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `cycle_id` | uuid | Filter by cycle |
+| `loop_id` | uuid | Filter by loop |
+| `status` | string | Filter by proposal status |
+| `submitter_id` | uuid | Filter by proposing user (`proposed_by`; `proposer_id` alias supported) |
+| `page`, `per_page` | integer | Pagination (same envelope as other list endpoints) |
 
 ---
 
@@ -64,15 +84,18 @@ POST /v1/catchball/proposals
 
 **Scopes:** `catchball:write`
 
-Routes through `catchball_submit_proposal` RPC. The submitter must have a role that permits submission in the target loop's authority lane.
+Routes through `catchball_submit_proposal` RPC. This endpoint submits an **existing** `catchball_proposals` row (draft packet formed in-product or via the same workspace); it does **not** create new rows without a proposal id.
 
 **Body:**
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `loop_id` | uuid | **required** | Target Catchball Loop |
-| `submitter_id` | uuid | **required** | Submitting user |
-| `content` | object | **required** | Proposal content (see below) |
+| `proposal_id` | uuid | **required** | Existing proposal row (`packet_id` accepted as synonym) |
+| `loop_id` | uuid | **required** | Must match the proposal’s `loop_id` |
+| `submitter_id` | uuid | **required** | Actor performing the RPC handoff (`proposer_id` accepted as synonym) |
+| `rationale` | string | | Passed as `p_rationale` when non-empty |
+| `tradeoffs` | jsonb | | Optional structured payload (`p_tradeoffs`) |
+| `content` | object | | Convenience: merged payload when `tradeoffs` omitted — top-level keys like `ranked_items` map to RPC `p_tradeoffs`; `content.rationale` may supply rationale |
 
 **Proposal content:**
 
@@ -105,6 +128,7 @@ curl -X POST "$PAI_BASE/catchball/proposals" \
   -H "Authorization: Bearer $PAI_KEY" \
   -H "Content-Type: application/json" \
   -d '{
+    "proposal_id": "proposal-uuid",
     "loop_id": "loop-uuid",
     "submitter_id": "team-lead-user-uuid",
     "content": { ... }
@@ -133,42 +157,14 @@ POST /v1/catchball/proposals/:id/accept
 
 **Scopes:** `catchball:write`
 
-Routes through `catchball_accept_packet` RPC. The actor must hold the decision authority for the target loop. Auto-records a `convergence` decision.
+Routes through `catchball_accept_packet` RPC. The actor must hold the decision authority for the target loop.
 
 **Body:**
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `actor_id` | uuid | **required** | Authority accepting the proposal |
-| `rationale` | string | **required** | Acceptance rationale — recorded in decision log |
-| `provisional` | boolean | | If `true`, advances to `accepted_provisional` (default: `false`) |
-
-**Request:**
-
-```bash
-curl -X POST "$PAI_BASE/catchball/proposals/proposal-uuid/accept" \
-  -H "Authorization: Bearer $PAI_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "actor_id": "vp-user-uuid",
-    "rationale": "Proposal aligns with Q3 strategic objectives. Approved.",
-    "provisional": false
-  }'
-```
-
-**Response:**
-
-```json
-{
-  "data": {
-    "proposal_id": "proposal-uuid",
-    "loop_state": "accepted",
-    "decision_id": "decision-uuid",
-    "accepted_at": "2026-04-01T14:00:00Z"
-  },
-  "meta": { ... }
-}
-```
+| `actor_id` | uuid | no | Defaults to authenticated context when omitted |
+| `note` | string | no | Recorded on the governance path |
 
 ---
 
@@ -180,14 +176,14 @@ POST /v1/catchball/proposals/:id/reject
 
 **Scopes:** `catchball:write`
 
-Routes through `catchball_reject_proposal` RPC. Atomically updates proposal status and appends a `proposal.rejected` governance event. The proposal must be in `pending`, `submitted`, or `under_review` status.
+Routes through `catchball_reject_proposal` RPC. Atomically updates proposal status and appends a `proposal.rejected` governance event.
 
 **Body:**
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `actor_id` | uuid | **required** | Authority rejecting the proposal |
-| `note` | string | **required** | Reason for rejection — recorded in governance log |
+| `actor_id` | uuid | no | Authority rejecting |
+| `note` | string | no | Reason for rejection — recorded where supported |
 
 ---
 
@@ -199,14 +195,14 @@ POST /v1/catchball/proposals/:id/return
 
 **Scopes:** `catchball:write`
 
-Routes through `catchball_return_proposal` RPC. Atomically updates proposal status to `returned` and appends a `proposal.returned` governance event. The submitting team may revise and resubmit.
+Routes through `catchball_return_proposal` RPC. Atomically updates proposal status to `returned` where applicable.
 
 **Body:**
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `actor_id` | uuid | **required** | Authority returning the proposal |
-| `note` | string | **required** | Guidance for the submitting team — what to revise |
+| `actor_id` | uuid | no | Actor returning |
+| `note` | string | no | Guidance for revising |
 
 ---
 
@@ -224,5 +220,5 @@ Returns the discussion thread (structured comments) on a proposal — the exchan
 
 ## What's next
 
-- [Concepts: Catchball and authority](/docs/concepts/catchball-and-authority)
-- [Guide: run a headless session](/docs/guides/run-headless-session)
+- [Concepts: Catchball and authority](/concepts/catchball-and-authority)
+- [Guide: run a headless session](/guides/run-headless-session)

@@ -2,6 +2,31 @@ import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
 
 const sidebars: SidebarsConfig = {
   docs: [
+    // ── USER GUIDE ───────────────────────────────────────────────────────
+    {
+      type: 'category',
+      label: 'User guide',
+      collapsed: false,
+      items: [
+        'user-guide/index',
+        'user-guide/dashboard',
+        'user-guide/tasks',
+        'user-guide/search',
+        'user-guide/strategy',
+        'user-guide/clarity-tools',
+        'user-guide/intake',
+        'user-guide/items',
+        'user-guide/relationships',
+        'user-guide/cycles',
+        'user-guide/tracks',
+        'user-guide/sessions',
+        'user-guide/catchball',
+        'user-guide/priorities-and-plans',
+        'user-guide/reports',
+        'user-guide/settings',
+      ],
+    },
+
     // ── GET STARTED ─────────────────────────────────────────────────────
     {
       type: 'category',
