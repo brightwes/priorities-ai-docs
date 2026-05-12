@@ -73,17 +73,18 @@ See [Error codes](/docs/reference/errors) for the full table.
 
 | Resource | Endpoints | Shipped |
 |----------|-----------|---------|
-| [Items](/docs/api/items/items) | List, create, get, update, delete, bulk import | ✅ |
+| [Items](/docs/api/items/items) | List, create, get, update, delete, bulk import; lineage, comments, value proposals, classification, per-item audit events | ✅ |
 | [Item Relationships](/docs/api/items/items-relationships) | List, create, delete | ✅ |
-| [Item Attributes](/docs/api/items/items-attributes) | Get, upsert attribute frames | ✅ |
+| [Item Attributes](/docs/api/items/items-attributes) | List frames, upsert frames, delete frame | ✅ |
 
 **Prioritization lifecycle**
 
 | Resource | Endpoints | Shipped |
 |----------|-----------|---------|
-| [Cycles](/docs/api/cycles) | List, create, get, update, phase transition | ✅ |
-| [Sessions](/docs/api/sessions) | List, create, get, update, results, state transition | ✅ |
-| [Tool Sessions](/docs/api/tool-sessions) | List, create, get, update, responses, finalize | ✅ |
+| [Cycles](/docs/api/cycles) | List, create, get, update, delete; tracks, participants, criteria, item pool, approve priority list, phase transition | ✅ |
+| [Tracks](/docs/api/tracks) | List, create, get, update, delete; sessions, participants, item pool, criteria, readiness | ✅ |
+| [Sessions](/docs/api/sessions) | List, create, get, update, delete; results, state transition, close; participants, messages, artifacts | ✅ |
+| [Tool Sessions](/docs/api/tool-sessions) | List, create, get, update; responses, finalize (aggregation for 13 tool types) | ✅ |
 | [Catchball](/docs/api/catchball) | Proposals, loops, threads, accept, return, reject | ✅ |
 | [Reports](/docs/api/reports) | Session report, cycle report, items export | ✅ |
 
