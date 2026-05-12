@@ -92,6 +92,8 @@ const sidebars: SidebarsConfig = {
           label: 'Strategy',
           link: { type: 'doc', id: 'api/strategies' },
           items: [
+            'api/objectives',
+            'api/goals',
             'api/desired-outcomes',
           ],
         },
@@ -106,6 +108,7 @@ const sidebars: SidebarsConfig = {
             'api/clarity-tools/export',
           ],
         },
+        'api/import',
         'api/reports',
         'api/webhooks',
         'api/workspace',

@@ -73,7 +73,7 @@ See [Error codes](/docs/reference/errors) for the full table.
 
 | Resource | Endpoints | Shipped |
 |----------|-----------|---------|
-| [Items](/docs/api/items/items) | List, create, get, update, delete, bulk import; provenance assertions, lineage read, comments, value proposals, classification, per-item audit events | ✅ |
+| [Items](/docs/api/items/items) | List, create, get, update, delete, bulk import; **assembled context**, provenance assertions, lineage read, comments, value proposals, classification, per-item audit events | ✅ |
 | [Item Relationships](/docs/api/items/items-relationships) | List, create, delete | ✅ |
 | [Item Attributes](/docs/api/items/items-attributes) | List frames, upsert frames, delete frame | ✅ |
 
@@ -111,8 +111,8 @@ See [Error codes](/docs/reference/errors) for the full table.
 | Resource | Endpoints | Shipped |
 |----------|-----------|---------|
 | [Strategies](/docs/api/strategies) | CRUD; nested objectives and goals views | ✅ |
-| [Objectives](/docs/api/strategies) | CRUD; priority mappings (item-to-objective alignment) | ✅ |
-| [Goals](/docs/api/strategies) | CRUD; metric tracking columns | ✅ |
+| [Objectives](/docs/api/objectives) | CRUD; priority mappings (item-to-objective alignment) | ✅ |
+| [Goals](/docs/api/goals) | CRUD; metric tracking (metric_name, target_value, current_value, unit) | ✅ |
 | [Desired Outcomes](/docs/api/desired-outcomes) | CRUD; structured evidence and obstacle fields | ✅ |
 
 **Clarity tools**
@@ -125,12 +125,48 @@ See [Error codes](/docs/reference/errors) for the full table.
 | [Methodology Connections](/docs/api/clarity-tools/methodology-connections) | Link clarity tools to prioritization objects | ✅ |
 | [Export](/docs/api/clarity-tools/export) | Universal paginated export (JSON + CSV, up to 1000/page) | ✅ |
 
+**Import & Export**
+
+| Resource | Endpoints | Shipped |
+|----------|-----------|---------|
+| [Import](/docs/api/import) | Bulk import items, relationships, desired outcomes, open questions (JSON or CSV, up to 1000 rows, idempotent) | ✅ |
+| [Export](/docs/api/clarity-tools/export) | Universal paginated export (JSON + CSV, up to 1000/page) | ✅ |
+
 **Platform**
 
 | Resource | Endpoints | Shipped |
 |----------|-----------|---------|
 | [Webhooks](/docs/api/webhooks) | Register, list, delete, test | ✅ |
 | [Workspace](/docs/api/workspace) | Settings, members, connectors, API keys | ✅ |
+
+---
+
+## OpenAPI spec
+
+Machine-readable spec — import into Postman, generate a client, or browse in Swagger UI.
+
+```
+GET /v1/openapi.json   — OpenAPI 3.1 JSON
+GET /v1/openapi.yaml   — OpenAPI 3.1 YAML
+```
+
+No authentication required.
+
+## TypeScript SDK
+
+```bash
+npm install @priorities-ai/sdk
+```
+
+```typescript
+import { PrioritiesClient } from '@priorities-ai/sdk';
+
+const client = new PrioritiesClient({ apiKey: 'pk_live_...' });
+
+const items  = await client.items.list({ 'lifecycle_state__in': 'active,draft' });
+const assembled = await client.items.assemble('item-uuid');
+const result = await client.import.items(rows, crypto.randomUUID());
+```
 
 ---
 
