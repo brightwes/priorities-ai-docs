@@ -268,7 +268,7 @@ DELETE /v1/tracks/:id/participants/:uid
 
 ## Item pool
 
-The item pool is the set of items eligible for scoring in this track. S2 readiness requires at least one item in the pool and the pool locked.
+The item pool is the set of items eligible for scoring in this track. S2 readiness (Pool Formation) requires at least one item in the pool before scoring can begin.
 
 ### Get item pool
 
@@ -278,7 +278,71 @@ GET /v1/tracks/:id/item-pool
 
 **Scopes:** `cycles:read`
 
-Returns the `item_pools` record(s) for this track, including `priority_ids` (the ordered list of item UUIDs) and `pool_locked_at`.
+Returns the `item_pools` rows for this track.
+
+---
+
+### Add an item to the pool
+
+```
+POST /v1/tracks/:id/item-pool
+```
+
+**Scopes:** `cycles:write`
+
+Adds an item to this track's working pool.
+
+**Body:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `item_id` | uuid | **required** | The item to add |
+| `position` | integer | | Display order within the pool |
+| `notes` | string | | Reason for inclusion or notes for the team |
+| `added_by` | uuid | | User ID of who added this item |
+
+**Request:**
+
+```bash
+curl -X POST "$PAI_BASE/tracks/track-uuid/item-pool" \
+  -H "Authorization: Bearer $PAI_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "item_id": "a1b2c3d4-...",
+    "notes": "High urgency — flagged by product leadership",
+    "added_by": "user-uuid"
+  }'
+```
+
+**Response:** `201 Created` — the created pool membership row.
+
+---
+
+### Remove an item from the pool
+
+```
+DELETE /v1/tracks/:id/item-pool/:itemId
+```
+
+**Scopes:** `cycles:write`
+
+Removes an item from the pool by its `item_id`.
+
+**Request:**
+
+```bash
+curl -X DELETE "$PAI_BASE/tracks/track-uuid/item-pool/a1b2c3d4-..." \
+  -H "Authorization: Bearer $PAI_KEY"
+```
+
+**Response:**
+
+```json
+{
+  "data": { "track_id": "track-uuid", "item_id": "a1b2c3d4-...", "deleted": true },
+  "meta": { "workspace_id": "...", "request_id": "..." }
+}
+```
 
 ---
 

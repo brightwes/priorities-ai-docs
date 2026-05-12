@@ -298,6 +298,22 @@ POST /v1/sessions/:id/messages
 | `user_name` | string | | Display name (cached at write time) |
 | `body` | string | **required** | Message text |
 
+### Delete a message
+
+```
+DELETE /v1/sessions/:id/messages/:messageId
+```
+
+**Scopes:** `sessions:write`
+
+Removes a specific message by its ID.
+
+**Response:**
+
+```json
+{ "data": { "id": "message-uuid", "deleted": true }, "meta": { ... } }
+```
+
 ---
 
 ## Artifacts
@@ -345,6 +361,22 @@ curl -X POST "$PAI_BASE/sessions/session-uuid/artifacts" \
   }'
 ```
 
+### Delete an artifact
+
+```
+DELETE /v1/sessions/:id/artifacts/:artifactId
+```
+
+**Scopes:** `sessions:write`
+
+Removes a specific artifact by its ID.
+
+**Response:**
+
+```json
+{ "data": { "id": "artifact-uuid", "deleted": true }, "meta": { ... } }
+```
+
 ---
 
 ## Auto-recorded decisions
@@ -356,7 +388,7 @@ Publishing a session writes a decision record automatically:
 | → `CRITERIA_FINALIZED` | `selection` | medium |
 | → `PUBLISHED` | `force_ranking` | high |
 
-These appear in `GET /v1/decisions` (coming soon) and are delivered via `session.published` webhook events.
+These appear in `GET /v1/decisions` and are delivered via `session.published` webhook events.
 
 ---
 

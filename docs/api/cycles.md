@@ -339,6 +339,22 @@ PATCH /v1/cycles/:id/criteria/:cid
 
 Updates any criterion field. `cycle_id` is immutable.
 
+### Delete a criterion
+
+```
+DELETE /v1/cycles/:id/criteria/:cid
+```
+
+**Scopes:** `cycles:write`
+
+Removes a criterion configuration from this cycle. Only safe to call before scoring begins.
+
+**Response:**
+
+```json
+{ "data": { "id": "cid-uuid", "deleted": true }, "meta": { ... } }
+```
+
 ---
 
 ## Item pool

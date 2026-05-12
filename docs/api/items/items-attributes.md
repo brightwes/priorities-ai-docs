@@ -1,6 +1,6 @@
 ---
 title: Item Attributes API
-description: Read and write attribute values, value proposals, and accepted scoring data for any item.
+description: Read and write interpretive frames on items — the problem/opportunity/risk lenses that define how an item is understood and displayed.
 sidebar_label: Item Attributes API
 sidebar_position: 3
 audience: Developers
@@ -9,58 +9,44 @@ status: published
 
 # Item Attributes
 
-**Attributes** are the scored dimensions of an item — the criteria-based values that inform prioritization. The **Values** section of the item detail in Priorities.ai exposes this data: what values have been proposed, which ones have been accepted, and what scoring gaps remain.
+**Attributes** are the interpretive frames attached to an item — structured descriptions that classify _how_ an item is understood: as a problem, opportunity, risk, constraint, etc. Frames drive how items appear in session displays and ranked outputs.
 
-The attributes model has two layers:
-
-1. **Value Proposals** — a stakeholder's proposed value for a specific attribute (e.g., "I think Impact is High"). Proposals are lightweight and revisable.
-2. **Accepted Values** — a proposal that has been explicitly accepted by an authorized user, becoming the canonical value for that attribute on this item. Accepted values feed into session scoring and track readiness.
+Every item can have multiple frames of different types. Exactly one frame may be marked `is_primary = true` — that is the canonical frame used in session displays, priority lists, and exported reports.
 
 ---
 
-## Value proposals
-
-A value proposal captures a participant's assessment of an item on a single scoring criterion.
-
-### Value proposal fields
+## Frame fields
 
 | Field | Type | Description |
 |---|---|---|
-| `id` | uuid | Proposal record ID |
-| `item_id` | uuid | The item this proposal applies to |
-| `attribute_key` | string | The criterion being assessed (e.g. `"impact"`, `"effort"`, `"reach"`) |
-| `value` | any | The proposed value — a number, string, or structured object depending on the criterion |
-| `proposed_by` | uuid | User ID of the proposer |
-| `session_id` | uuid | Session in which this proposal was made (optional) |
-| `track_id` | uuid | Track this proposal is scoped to (optional) |
-| `rationale` | string | Reasoning behind the proposed value (optional) |
-| `status` | string | `proposed`, `accepted`, or `superseded` |
-| `accepted_by` | uuid | User who accepted this proposal (set on acceptance) |
-| `accepted_at` | timestamptz | When the proposal was accepted |
-| `created_at` | timestamptz | When the proposal was created |
+| `id` | uuid | Frame record ID |
+| `item_id` | uuid | The item this frame belongs to |
+| `workspace_id` | uuid | Workspace scope |
+| `frame_type` | string | `problem`, `opportunity`, `risk`, `constraint`, `hypothesis`, `goal` |
+| `title` | string | Short label for the frame |
+| `description` | string | Full framing statement |
+| `is_primary` | boolean | Whether this is the canonical frame for the item |
+| `created_at` | timestamptz | When the frame was created |
+| `updated_at` | timestamptz | When the frame was last updated |
+
+At most one frame per item may have `is_primary = true`. The API enforces this by demoting all existing primary frames before promoting a new one.
 
 ---
 
-## List value proposals
+## List frames
 
 ```
-GET /v1/items/:id/value-proposals
+GET /v1/items/:id/attributes
 ```
 
 **Scopes:** `items:read`
 
-Returns all value proposals for this item, newest first.
-
-**Query params:**
-
-| Param | Description |
-|---|---|
-| `status` | Filter by `proposed`, `accepted`, or `superseded` |
+Returns all interpretive frames on this item, ordered by creation time (oldest first).
 
 **Request:**
 
 ```bash
-curl "$PAI_BASE/items/a1b2c3d4-.../value-proposals" \
+curl "$PAI_BASE/items/a1b2c3d4-.../attributes" \
   -H "Authorization: Bearer $PAI_KEY"
 ```
 
@@ -70,143 +56,155 @@ curl "$PAI_BASE/items/a1b2c3d4-.../value-proposals" \
 {
   "data": [
     {
-      "id": "proposal-uuid-1",
+      "id": "frame-uuid-1",
       "item_id": "a1b2c3d4-...",
-      "attribute_key": "impact",
-      "value": "high",
-      "proposed_by": "user-uuid",
-      "rationale": "This affects every customer's daily workflow.",
-      "status": "accepted",
-      "accepted_by": "owner-uuid",
-      "accepted_at": "2026-03-21T14:30:00Z",
-      "session_id": null,
-      "track_id": "track-uuid",
-      "created_at": "2026-03-20T10:00:00Z"
+      "workspace_id": "ws-uuid",
+      "frame_type": "problem",
+      "title": "Customer cannot reconcile orders",
+      "description": "Finance teams spend 3+ hours per week manually reconciling order data that should auto-sync.",
+      "is_primary": true,
+      "created_at": "2026-03-10T09:00:00Z",
+      "updated_at": "2026-03-10T09:00:00Z"
     },
     {
-      "id": "proposal-uuid-2",
+      "id": "frame-uuid-2",
       "item_id": "a1b2c3d4-...",
-      "attribute_key": "effort",
-      "value": 3,
-      "proposed_by": "user-uuid-2",
-      "rationale": "Estimated 3 team-weeks based on prior similar work.",
-      "status": "proposed",
-      "accepted_by": null,
-      "accepted_at": null,
-      "session_id": "session-uuid",
-      "track_id": "track-uuid",
-      "created_at": "2026-03-21T09:00:00Z"
+      "workspace_id": "ws-uuid",
+      "frame_type": "opportunity",
+      "title": "Upsell to real-time sync tier",
+      "description": "Solving this opens a natural upgrade path for enterprise customers who need sub-minute sync.",
+      "is_primary": false,
+      "created_at": "2026-03-11T11:30:00Z",
+      "updated_at": "2026-03-11T11:30:00Z"
     }
   ],
   "meta": { "workspace_id": "...", "request_id": "..." }
 }
 ```
 
-**Fetch only unresolved proposals:**
-
-```bash
-curl "$PAI_BASE/items/a1b2c3d4-.../value-proposals?status=proposed" \
-  -H "Authorization: Bearer $PAI_KEY"
-```
-
 ---
 
-## Submit a value proposal
+## Upsert frames
 
 ```
-POST /v1/items/:id/value-proposals
+PATCH /v1/items/:id/attributes
 ```
 
 **Scopes:** `items:write`
 
-Submits a new proposed value for a specific attribute.
+Upserts one or more frames on the item in a single call.
+
+- Frames that include an `id` field update that existing frame.
+- Frames without an `id` field are inserted as new frames.
+- If any frame has `is_primary: true`, all other frames on the item are demoted to `is_primary: false` first (the partial unique index enforces at-most-one primary per item).
 
 **Body:**
 
 | Field | Type | Required | Description |
 |---|---|---|---|
-| `attribute_key` | string | **required** | The criterion being assessed |
-| `value` | any | **required** | The proposed value |
-| `proposed_by` | uuid | **required** | User ID of the proposer |
-| `session_id` | uuid | | Session context (optional) |
-| `track_id` | uuid | | Track context (optional) |
-| `rationale` | string | | Reasoning behind the proposal |
+| `frames` | array | **required** | Array of frame objects to upsert |
 
-**Request:**
+Each frame object:
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `id` | uuid | | Omit to insert; include to update an existing frame |
+| `frame_type` | string | **required** | `problem`, `opportunity`, `risk`, `constraint`, `hypothesis`, or `goal` |
+| `title` | string | **required** | Short label |
+| `description` | string | **required** | Full framing statement |
+| `is_primary` | boolean | | Pass `true` to promote this frame to canonical |
+
+**Add a new primary frame:**
 
 ```bash
-curl -X POST "$PAI_BASE/items/a1b2c3d4-.../value-proposals" \
+curl -X PATCH "$PAI_BASE/items/a1b2c3d4-.../attributes" \
   -H "Authorization: Bearer $PAI_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "attribute_key": "reach",
-    "value": 8500,
-    "proposed_by": "user-uuid",
-    "track_id": "track-uuid",
-    "rationale": "Based on MAU count for the affected feature surface."
+    "frames": [
+      {
+        "frame_type": "opportunity",
+        "title": "Expand into APAC",
+        "description": "Solving order reconciliation removes the last blocker to launching in Japan and Singapore.",
+        "is_primary": true
+      }
+    ]
   }'
 ```
 
-**Response:** `201 Created` — the created proposal object.
+**Response:** `200 OK` — array of the upserted frame objects.
+
+**Update an existing frame and add a new one in one call:**
+
+```bash
+curl -X PATCH "$PAI_BASE/items/a1b2c3d4-.../attributes" \
+  -H "Authorization: Bearer $PAI_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "frames": [
+      {
+        "id": "frame-uuid-1",
+        "title": "Customer cannot reconcile orders (updated)",
+        "description": "Finance teams spend 3–5 hours per week on reconciliation.",
+        "frame_type": "problem"
+      },
+      {
+        "frame_type": "risk",
+        "title": "Competitor ships similar feature",
+        "description": "Two known competitors have this on their roadmap for Q3.",
+        "is_primary": false
+      }
+    ]
+  }'
+```
 
 ---
 
-## Accept a value proposal
+## Delete a frame
 
 ```
-POST /v1/items/:id/value-proposals/:proposalId/accept
+DELETE /v1/items/:id/attributes/:frameId
 ```
 
 **Scopes:** `items:write`
 
-Accepts a specific proposal, promoting it to the canonical value for this attribute. The proposal's `status` becomes `accepted` and `accepted_by` / `accepted_at` are set.
-
-**Body:**
-
-| Field | Type | Required | Description |
-|---|---|---|---|
-| `accepted_by` | uuid | **required** | User ID of the person accepting the proposal |
+Removes a specific interpretive frame by its ID. The canonical frame (`is_primary = true`) can be deleted; callers are responsible for promoting another frame to canonical afterward if needed.
 
 **Request:**
 
 ```bash
-curl -X POST "$PAI_BASE/items/a1b2c3d4-.../value-proposals/proposal-uuid-2/accept" \
-  -H "Authorization: Bearer $PAI_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{ "accepted_by": "owner-uuid" }'
+curl -X DELETE "$PAI_BASE/items/a1b2c3d4-.../attributes/frame-uuid-2" \
+  -H "Authorization: Bearer $PAI_KEY"
 ```
 
-**Response:** `200 OK` — the updated proposal with `status: "accepted"`.
+**Response:**
+
+```json
+{
+  "data": { "id": "frame-uuid-2", "deleted": true },
+  "meta": { "workspace_id": "...", "request_id": "..." }
+}
+```
 
 ---
 
-## Value convergence and readiness
+## Frame types
 
-Accepted values feed directly into **track readiness**. The platform's `evaluate_track_readiness` RPC checks whether `values_converged_at` has been set on the track — which requires that all required criteria for items in the pool have accepted values.
+| Type | When to use |
+|---|---|
+| `problem` | A pain point, gap, or failure mode experienced by a user or system |
+| `opportunity` | A capability, market, or improvement worth capturing |
+| `risk` | A potential negative outcome if the item is not addressed (or is addressed poorly) |
+| `constraint` | A hard boundary that cannot be changed (budget, regulatory, technical) |
+| `hypothesis` | An untested belief about value or behavior |
+| `goal` | A desired end state the item moves toward |
 
-Calling `GET /v1/tracks/:id/readiness` will tell you specifically which items have outstanding value gaps (S5 blockers).
-
----
-
-## Attribute keys
-
-Attribute keys are workspace-defined. Common built-in keys include:
-
-| Key | Typical value type | Notes |
-|---|---|---|
-| `impact` | string (`low`, `medium`, `high`, `critical`) | Effect on outcomes if delivered |
-| `effort` | number (1–10 or story points) | Cost to deliver |
-| `reach` | number | Users or accounts affected |
-| `confidence` | number (1–100) | Estimate confidence level |
-| `time_criticality` | string or number | Urgency of delivery |
-
-Custom keys can be defined per workspace in **Settings → Scoring Criteria**.
+Items can hold frames of multiple types simultaneously. The primary frame (`is_primary: true`) is the one displayed in session UIs and exported outputs.
 
 ---
 
 ## What's next
 
-- [Item Classification API](/docs/api/items/items-classification) — frames and altitude
+- [Items API](/docs/api/items/items) — core CRUD and value proposals
 - [Item Relationships API](/docs/api/items/items-relationships) — dependencies, packages, aggregations
-- [Item Activity API](/docs/api/items/items-activity) — provenance, history, and discussion
-- [Tracks API](/docs/api/tracks) — `GET /v1/tracks/:id/readiness` to check value completion
+- [Tracks API](/docs/api/tracks) — `GET /v1/tracks/:id/readiness` to check how attributes affect readiness

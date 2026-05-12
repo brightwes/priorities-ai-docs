@@ -363,11 +363,193 @@ Marks a proposal as accepted — the authoritative value for this attribute on t
 
 ---
 
+## Classification
+
+Classification determines how an item is categorized within the workspace's comparability model — its `category` (e.g. `initiative`, `capability`, `feature`, `spike`) and `altitude_level` (the organizational level at which it lives). Both fields are comparability-sensitive and require RPC-backed authority transitions per build contract §2.3a.
+
+The classification lifecycle: `empty → proposed → approved`. Agents propose; humans accept (or directly set).
+
+### Get classification
+
+```
+GET /v1/items/:id/classification
+```
+
+**Scopes:** `items:read`
+
+Returns the item's current classification state and the active proposal (if any).
+
+**Response:**
+
+```json
+{
+  "data": {
+    "item_id": "a1b2c3d4-...",
+    "item_category": "feature",
+    "altitude_level": 3,
+    "classification_status": "proposed",
+    "active_proposal": {
+      "id": "proposal-uuid",
+      "proposed_by": "agent",
+      "proposed_by_agent": "atc",
+      "classification_fields": {
+        "category": "feature",
+        "altitude_level": 3,
+        "rationale": "Scope indicates a user-facing capability at team level.",
+        "confidence": "high"
+      },
+      "status": "active",
+      "created_at": "2026-04-10T08:00:00Z"
+    }
+  },
+  "meta": { "workspace_id": "...", "request_id": "..." }
+}
+```
+
+When `classification_status` is `empty`, `active_proposal` is `null`.
+
+### Set classification directly
+
+```
+POST /v1/items/:id/classification
+```
+
+**Scopes:** `items:write`
+
+Directly sets the classification, bypassing the proposal flow. Sets `classification_status` to `approved` immediately. Calls the `set_item_classification` RPC.
+
+**Body:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `category` | string | **required** | e.g. `initiative`, `capability`, `feature`, `spike` |
+| `altitude_level` | integer | **required** | Organizational altitude (workspace-defined scale) |
+| `user_id` | uuid | **required** | User performing the classification |
+| `rationale` | string | | Reason for this classification |
+| `question_responses` | array | | Structured answers to classification questions |
+
+**Request:**
+
+```bash
+curl -X POST "$PAI_BASE/items/a1b2c3d4-.../classification" \
+  -H "Authorization: Bearer $PAI_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "category": "feature",
+    "altitude_level": 3,
+    "user_id": "user-uuid",
+    "rationale": "Confirmed scope with engineering lead — single team, single sprint."
+  }'
+```
+
+**Response:** `200 OK`
+
+```json
+{
+  "data": {
+    "item_id": "a1b2c3d4-...",
+    "category": "feature",
+    "altitude_level": 3,
+    "classification_status": "approved"
+  },
+  "meta": { "workspace_id": "...", "request_id": "..." }
+}
+```
+
+### Accept an active proposal
+
+```
+POST /v1/items/:id/classification/accept
+```
+
+**Scopes:** `items:write`
+
+Accepts the active classification proposal produced by an agent or another user. Calls the `accept_classification_proposal` RPC.
+
+**Body:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `proposal_id` | uuid | **required** | ID of the active proposal to accept |
+| `accepted_by` | uuid | **required** | User ID of the person accepting |
+
+**Request:**
+
+```bash
+curl -X POST "$PAI_BASE/items/a1b2c3d4-.../classification/accept" \
+  -H "Authorization: Bearer $PAI_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "proposal_id": "proposal-uuid",
+    "accepted_by": "user-uuid"
+  }'
+```
+
+**Response:** `200 OK`
+
+```json
+{
+  "data": {
+    "item_id": "a1b2c3d4-...",
+    "proposal_id": "proposal-uuid",
+    "classification_status": "approved"
+  },
+  "meta": { "workspace_id": "...", "request_id": "..." }
+}
+```
+
+---
+
+## Audit events
+
+```
+GET /v1/items/:id/audit-events
+```
+
+**Scopes:** `audit:read`
+
+Returns paginated audit events whose payload references this item. Useful for building an item-level activity log in an external system.
+
+**Query parameters:**
+
+| Name | Type | Description |
+|---|---|---|
+| `page` | integer | Page number (default `1`) |
+| `per_page` | integer | Results per page (default `20`, max `100`) |
+
+**Response:**
+
+```json
+{
+  "data": [
+    {
+      "id": "audit-uuid",
+      "workspace_id": "ws-uuid",
+      "actor_id": "user-uuid",
+      "action": "item.updated",
+      "payload": { "itemId": "a1b2c3d4-...", "field": "title", "before": "Old name", "after": "New name" },
+      "created_at": "2026-04-15T14:22:00Z"
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "per_page": 20,
+    "total": 8,
+    "total_pages": 1,
+    "workspace_id": "...",
+    "request_id": "..."
+  }
+}
+```
+
+For workspace-wide audit event queries (all actors, all items), see the [Audit Events API](/docs/api/events/audit-events).
+
+---
+
 ## What's next
 
-- [Item Classification API](/docs/api/items/items-classification) — frames, altitude, and canonical frame
+- [Item Attributes API](/docs/api/items/items-attributes) — interpretive frames (problem, opportunity, risk, etc.)
 - [Item Relationships API](/docs/api/items/items-relationships) — dependencies, packages, aggregations
-- [Item Attributes API](/docs/api/items/items-attributes) — value proposals and scoring
-- [Item Activity API](/docs/api/items/items-activity) — provenance, history, and discussion
+- [Audit Events API](/docs/api/events/audit-events) — workspace-level audit log
 - [Tracks API](/docs/api/tracks) — how items enter a track's item pool for scoring
 - [Core concepts: items and their lifecycle](/docs/start/core-concepts)
