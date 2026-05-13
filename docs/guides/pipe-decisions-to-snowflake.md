@@ -173,5 +173,5 @@ ORDER BY ranked_at DESC, rank ASC;
 
 ## What's next
 
-- [Snowflake integration reference](/docs/integrations/systems-of-insight/snowflake) — native connector details (planned)
-- [Subscribe to decisions](/docs/guides/subscribe-to-decisions) — full webhook setup guide
+- [Snowflake integration reference](/integrations/systems-of-insight/snowflake) — native connector details (planned)
+- [Subscribe to decisions](/guides/subscribe-to-decisions) — full webhook setup guide

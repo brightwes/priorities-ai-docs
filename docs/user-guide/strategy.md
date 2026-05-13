@@ -110,7 +110,7 @@ The Strategy Kernel page is module-gated. It appears in the sidebar only when th
 
 **Route:** `/prioritization/strategy/canvas`
 
-The Strategy Canvas is a one-page narrative tool for communicating strategy. It follows a structure adapted from the HP-style strategy canvas, capturing six elements on a single surface:
+The Strategy Canvas is a one-page narrative tool for communicating strategy. It uses a six-element layout on a single surface:
 
 | Section | What it captures |
 |---|---|

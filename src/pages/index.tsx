@@ -49,9 +49,9 @@ const AREAS = [
     heading: 'Item relationship graph',
     description: 'Typed, mutation-governed relationships between items. Dependency, contribution, decomposition — all auditable and queryable.',
     links: [
-      { href: '/api/items',                    label: 'Items API' },
-      { href: '/api/items-relationships',      label: 'Relationships API' },
-      { href: '/api/items-attributes',         label: 'Attributes API' },
+      { href: '/api/items/items',                    label: 'Items API' },
+      { href: '/api/items/items-relationships',      label: 'Relationships API' },
+      { href: '/api/items/items-attributes',         label: 'Attributes API' },
       { href: '/concepts/item-relationships',  label: 'Relationship types' },
       { href: '/concepts/protection-rings',    label: 'Protection rings' },
     ],
@@ -61,9 +61,9 @@ const AREAS = [
     heading: 'Decision traceability',
     description: 'Every priority queryable to its rationale. Governance events, audit events, and decision records — the permanent record.',
     links: [
-      { href: '/api/decisions',                 label: 'Decisions API' },
-      { href: '/api/governance-events',         label: 'Governance events' },
-      { href: '/api/audit-events',              label: 'Audit events' },
+      { href: '/api/events/decisions',                 label: 'Decisions API' },
+      { href: '/api/events/governance-events',         label: 'Governance events' },
+      { href: '/api/events/audit-events',              label: 'Audit events' },
       { href: '/guides/subscribe-to-decisions', label: 'Subscribe to decisions' },
       { href: '/concepts/decision-classes',     label: 'Decision classes' },
     ],
@@ -127,7 +127,7 @@ export default function Home(): React.ReactElement {
                 <Link href="/start/quickstart" className={styles.heroCta}>
                   Get started with Priorities.ai →
                 </Link>
-                <Link href="/concepts/glossary" className={styles.heroCtaSecondary}>
+                <Link href="/start/core-concepts" className={styles.heroCtaSecondary}>
                   Explore all concepts
                 </Link>
               </div>

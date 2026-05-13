@@ -48,5 +48,5 @@ For operations where duplicate-request safety is critical:
 
 ## What's next
 
-- [API versioning](/docs/reference/api-versioning) — planned
-- [Changelog](/docs/reference/changelog)
+- [API versioning](/reference/api-versioning) — planned
+- [Changelog](/reference/changelog)

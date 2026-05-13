@@ -18,7 +18,7 @@ Full payload schemas for every event type. All payloads use the same envelope:
 }
 ```
 
-See [Webhooks API](/docs/api/webhooks) for registration, delivery model, and security.
+See [Webhooks API](/api/webhooks) for registration, delivery model, and security.
 
 ---
 
@@ -515,5 +515,5 @@ Fires when workspace settings are changed.
 
 ## What's next
 
-- [Webhooks API](/docs/api/webhooks) — register and manage webhooks
-- [Guide: subscribe to decisions](/docs/guides/subscribe-to-decisions) — end-to-end webhook integration
+- [Webhooks API](/api/webhooks) — register and manage webhooks
+- [Guide: subscribe to decisions](/guides/subscribe-to-decisions) — end-to-end webhook integration

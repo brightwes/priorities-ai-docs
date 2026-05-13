@@ -120,5 +120,5 @@ PATCH /v1/decisions/:id/status
 
 ## See also
 
-- [Governance Events API](/docs/api/governance-events) — structural lifecycle events that auto-generate decisions
-- [Webhooks API](/docs/api/webhooks) — `session.published` and `priority_list.approved` events include decision payloads
+- [Governance Events API](/api/events/governance-events) — structural lifecycle events that auto-generate decisions
+- [Webhooks API](/api/webhooks) — `session.published` and `priority_list.approved` events include decision payloads

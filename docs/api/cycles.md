@@ -367,7 +367,7 @@ GET /v1/cycles/:id/item-pool
 
 Returns all item pools belonging to tracks in this cycle. Each pool includes `priority_ids` (ordered item UUIDs) and `pool_locked_at`.
 
-To manage pool membership at the track level, use the [Tracks API](/docs/api/tracks).
+To manage pool membership at the track level, use the [Tracks API](/api/tracks).
 
 ---
 
@@ -484,7 +484,7 @@ curl "$PAI_BASE/cycles/cycle-uuid/tool-readiness?tool_name=rice" \
 
 ## What's next
 
-- [Tracks API](/docs/api/tracks) — manage tracks, participants, item pools, criteria, and readiness
-- [Sessions API](/docs/api/sessions) — create sessions within a cycle
-- [Catchball API](/docs/api/catchball) — manage authority exchanges within a cycle
-- [Concepts: state machines](/docs/concepts/state-machines) — cycle, session, and POR state machines
+- [Tracks API](/api/tracks) — manage tracks, participants, item pools, criteria, and readiness
+- [Sessions API](/api/sessions) — create sessions within a cycle
+- [Catchball API](/api/catchball) — manage authority exchanges within a cycle
+- [Concepts: state machines](/concepts/state-machines) — cycle, session, and POR state machines

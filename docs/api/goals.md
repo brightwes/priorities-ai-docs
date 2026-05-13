@@ -107,6 +107,6 @@ Update `current_value` via `PATCH` as your metrics are observed. Pair with webho
 
 ## What's next
 
-- [Strategies API](/docs/api/strategies) — the parent strategy layer
-- [Objectives API](/docs/api/objectives) — concrete outcomes goals measure toward
-- [Desired Outcomes API](/docs/api/desired-outcomes) — qualitative outcome briefs
+- [Strategies API](/api/strategies) — the parent strategy layer
+- [Objectives API](/api/objectives) — concrete outcomes goals measure toward
+- [Desired Outcomes API](/api/desired-outcomes) — qualitative outcome briefs

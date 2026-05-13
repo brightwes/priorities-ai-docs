@@ -139,6 +139,6 @@ When you export priority lists to a System of Execution (Jira), the exported ite
 
 ## What's next
 
-- [Item relationships](/docs/concepts/item-relationships) — typed relationship graph
-- [Protection rings](/docs/concepts/protection-rings) — mutation rules for items in active contexts
-- [State machines](/docs/concepts/state-machines) — the cycle and session state machines
+- [Item relationships](/concepts/item-relationships) — typed relationship graph
+- [Protection rings](/concepts/protection-rings) — mutation rules for items in active contexts
+- [State machines](/concepts/state-machines) — the cycle and session state machines

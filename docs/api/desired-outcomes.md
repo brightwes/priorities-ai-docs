@@ -233,6 +233,6 @@ The `steps` field is a JSONB array. Each entry:
 
 ## What's next
 
-- [Strategies API](/docs/api/strategies) — link Desired Outcomes to strategic objectives
-- [Methodology Connections API](/docs/api/clarity-tools/methodology-connections) — connect Desired Outcomes to sessions, cycles, and items
-- [Open Questions API](/docs/api/clarity-tools/open-questions) — capture uncertainties related to an outcome
+- [Strategies API](/api/strategies) — link Desired Outcomes to strategic objectives
+- [Methodology Connections API](/api/clarity-tools/methodology-connections) — connect Desired Outcomes to sessions, cycles, and items
+- [Open Questions API](/api/clarity-tools/open-questions) — capture uncertainties related to an outcome

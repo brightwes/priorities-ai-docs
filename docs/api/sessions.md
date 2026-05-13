@@ -394,6 +394,6 @@ These appear in `GET /v1/decisions` and are delivered via `session.published` we
 
 ## What's next
 
-- [Tool sessions](/docs/api/tool-sessions) — run the actual prioritization tool within a session
-- [Reports](/docs/api/reports) — pull session reports with full provenance
-- [Subscribe to decision events](/docs/guides/subscribe-to-decisions) — react to session publication
+- [Tool sessions](/api/tool-sessions) — run the actual prioritization tool within a session
+- [Reports](/api/reports) — pull session reports with full provenance
+- [Subscribe to decision events](/guides/subscribe-to-decisions) — react to session publication

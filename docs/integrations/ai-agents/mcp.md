@@ -114,7 +114,7 @@ An agent answers questions from executives like "why was item X ranked above ite
 
 ## Guide: build an agent with MCP
 
-[→ Build an agent with MCP guide](/docs/guides/build-an-agent-with-mcp)
+[→ Build an agent with MCP guide](/guides/build-an-agent-with-mcp)
 
 ---
 

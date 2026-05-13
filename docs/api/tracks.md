@@ -415,6 +415,6 @@ Returns all criteria configurations scoped to this track, including `attribute_k
 
 ## What's next
 
-- [Cycles API](/docs/api/cycles) — the parent governance container
-- [Sessions API](/docs/api/sessions) — create ranking sessions within a track
-- [Concepts: comparability and tracks](/docs/concepts/comparability-and-tracks) — why tracks exist and how they scope comparisons
+- [Cycles API](/api/cycles) — the parent governance container
+- [Sessions API](/api/sessions) — create ranking sessions within a track
+- [Concepts: comparability and tracks](/concepts/comparability-and-tracks) — why tracks exist and how they scope comparisons

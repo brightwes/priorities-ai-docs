@@ -190,6 +190,6 @@ async function upsertJiraEpic(item, cycleId) {
 
 ## What's next
 
-- [Jira integration reference](/docs/integrations/systems-of-execution/jira) — all configuration options
-- [Build a Slack notifier](/docs/guides/build-a-slack-notifier) — notify your team when the list is published
-- [Subscribe to decisions](/docs/guides/subscribe-to-decisions) — handle more event types
+- [Jira integration reference](/integrations/systems-of-execution/jira) — all configuration options
+- [Build a Slack notifier](/guides/build-a-slack-notifier) — notify your team when the list is published
+- [Subscribe to decisions](/guides/subscribe-to-decisions) — handle more event types

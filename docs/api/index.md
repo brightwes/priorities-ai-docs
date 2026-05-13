@@ -56,7 +56,7 @@ Every successful response:
 }
 ```
 
-See [Error codes](/docs/reference/errors) for the full table.
+See [Error codes](/reference/errors) for the full table.
 
 ## Pagination
 
@@ -73,71 +73,71 @@ See [Error codes](/docs/reference/errors) for the full table.
 
 | Resource | Endpoints | Shipped |
 |----------|-----------|---------|
-| [Items](/docs/api/items/items) | List, create, get, update, delete, bulk import; **assembled context**, provenance assertions, lineage read, comments, value proposals, classification, per-item audit events | ✅ |
-| [Item Relationships](/docs/api/items/items-relationships) | List, create, delete | ✅ |
-| [Item Attributes](/docs/api/items/items-attributes) | List frames, upsert frames, delete frame | ✅ |
+| [Items](/api/items/items) | List, create, get, update, delete, bulk import; **assembled context**, provenance assertions, lineage read, comments, value proposals, classification, per-item audit events | ✅ |
+| [Item Relationships](/api/items/items-relationships) | List, create, delete | ✅ |
+| [Item Attributes](/api/items/items-attributes) | List frames, upsert frames, delete frame | ✅ |
 
 **Prioritization lifecycle**
 
 | Resource | Endpoints | Shipped |
 |----------|-----------|---------|
-| [Cycles](/docs/api/cycles) | List, create, get, update, delete; tracks, participants, criteria, item pool, tool readiness, approve priority list, phase transition | ✅ |
-| [Tracks](/docs/api/tracks) | List, create, get, update, delete; sessions, participants, item pool + lock/unlock, criteria, S1–S6 readiness | ✅ |
-| [Sessions](/docs/api/sessions) | List, create, get, update, delete; results, state transition, close; participants, messages, artifacts | ✅ |
-| [Tool Sessions](/docs/api/tool-sessions) | List, create, get, update; responses, finalize (aggregation for 13 tool types) | ✅ |
-| [Catchball](/docs/api/catchball) | Proposals, loops, threads, accept, return, reject | ✅ |
-| [Reports](/docs/api/reports) | Session report, cycle report, items export | ✅ |
+| [Cycles](/api/cycles) | List, create, get, update, delete; tracks, participants, criteria, item pool, tool readiness, approve priority list, phase transition | ✅ |
+| [Tracks](/api/tracks) | List, create, get, update, delete; sessions, participants, item pool + lock/unlock, criteria, S1–S6 readiness | ✅ |
+| [Sessions](/api/sessions) | List, create, get, update, delete; results, state transition, close; participants, messages, artifacts | ✅ |
+| [Tool Sessions](/api/tool-sessions) | List, create, get, update; responses, finalize (aggregation for 13 tool types) | ✅ |
+| [Catchball](/api/catchball) | Proposals, loops, threads, accept, return, reject | ✅ |
+| [Reports](/api/reports) | Session report, cycle report, items export | ✅ |
 
 **Planning layer**
 
 | Resource | Endpoints | Shipped |
 |----------|-----------|---------|
-| [Plan Cycles](/docs/api/plan-cycles) | CRUD; versioned plan snapshots, Plan of Record authorization, initiatives, work units | ✅ |
-| [Decision Rights](/docs/api/decision-rights) | CRUD; RPC-backed delegation and revocation | ✅ |
-| [Stakeholder Pulses](/docs/api/stakeholder-pulses) | CRUD; track sent/viewed/responded lifecycle | ✅ |
-| [OST](/docs/api/ost) | Opportunity Solution Trees CRUD; nodes CRUD | ✅ |
-| [Workflows](/docs/api/workflows) | CRUD; seed five canonical presets | ✅ |
+| [Plan Cycles](/api/plan-cycles) | CRUD; versioned plan snapshots, Plan of Record authorization, initiatives, work units | ✅ |
+| [Decision Rights](/api/decision-rights) | CRUD; RPC-backed delegation and revocation | ✅ |
+| [Stakeholder Pulses](/api/stakeholder-pulses) | CRUD; track sent/viewed/responded lifecycle | ✅ |
+| [OST](/api/ost) | Opportunity Solution Trees CRUD; nodes CRUD | ✅ |
+| [Workflows](/api/workflows) | CRUD; seed five canonical presets | ✅ |
 
 **Decisions & events**
 
 | Resource | Endpoints | Shipped |
 |----------|-----------|---------|
-| [Decisions](/docs/api/events/decisions) | List, get, create manual, update status | ✅ |
-| [Governance Events](/docs/api/events/governance-events) | List, filtered by entity | ✅ |
-| [Audit Events](/docs/api/events/audit-events) | List workspace-wide or per item | ✅ |
+| [Decisions](/api/events/decisions) | List, get, create manual, update status | ✅ |
+| [Governance Events](/api/events/governance-events) | List, filtered by entity | ✅ |
+| [Audit Events](/api/events/audit-events) | List workspace-wide or per item | ✅ |
 
 **Strategy**
 
 | Resource | Endpoints | Shipped |
 |----------|-----------|---------|
-| [Strategies](/docs/api/strategies) | CRUD; nested objectives and goals views | ✅ |
-| [Objectives](/docs/api/objectives) | CRUD; priority mappings (item-to-objective alignment) | ✅ |
-| [Goals](/docs/api/goals) | CRUD; metric tracking (metric_name, target_value, current_value, unit) | ✅ |
-| [Desired Outcomes](/docs/api/desired-outcomes) | CRUD; structured evidence and obstacle fields | ✅ |
+| [Strategies](/api/strategies) | CRUD; nested objectives and goals views | ✅ |
+| [Objectives](/api/objectives) | CRUD; priority mappings (item-to-objective alignment) | ✅ |
+| [Goals](/api/goals) | CRUD; metric tracking (metric_name, target_value, current_value, unit) | ✅ |
+| [Desired Outcomes](/api/desired-outcomes) | CRUD; structured evidence and obstacle fields | ✅ |
 
 **Clarity tools**
 
 | Resource | Endpoints | Shipped |
 |----------|-----------|---------|
-| [Outcome Drivers](/docs/api/clarity-tools/outcome-drivers) | Drivers CRUD + sets + set membership | ✅ |
-| [Back Plans](/docs/api/clarity-tools/backplan) | Documents, nodes, edges, swimlanes, milestones | ✅ |
-| [Open Questions](/docs/api/clarity-tools/open-questions) | CRUD, resolve, reopen | ✅ |
-| [Methodology Connections](/docs/api/clarity-tools/methodology-connections) | Link clarity tools to prioritization objects | ✅ |
-| [Export](/docs/api/clarity-tools/export) | Universal paginated export (JSON + CSV, up to 1000/page) | ✅ |
+| [Outcome Drivers](/api/clarity-tools/outcome-drivers) | Drivers CRUD + sets + set membership | ✅ |
+| [Back Plans](/api/clarity-tools/backplan) | Documents, nodes, edges, swimlanes, milestones | ✅ |
+| [Open Questions](/api/clarity-tools/open-questions) | CRUD, resolve, reopen | ✅ |
+| [Methodology Connections](/api/clarity-tools/methodology-connections) | Link clarity tools to prioritization objects | ✅ |
+| [Export](/api/clarity-tools/export) | Universal paginated export (JSON + CSV, up to 1000/page) | ✅ |
 
 **Import & Export**
 
 | Resource | Endpoints | Shipped |
 |----------|-----------|---------|
-| [Import](/docs/api/import) | Bulk import items, relationships, desired outcomes, open questions (JSON or CSV, up to 1000 rows, idempotent) | ✅ |
-| [Export](/docs/api/clarity-tools/export) | Universal paginated export (JSON + CSV, up to 1000/page) | ✅ |
+| [Import](/api/import) | Bulk import items, relationships, desired outcomes, open questions (JSON or CSV, up to 1000 rows, idempotent) | ✅ |
+| [Export](/api/clarity-tools/export) | Universal paginated export (JSON + CSV, up to 1000/page) | ✅ |
 
 **Platform**
 
 | Resource | Endpoints | Shipped |
 |----------|-----------|---------|
-| [Webhooks](/docs/api/webhooks) | Register, list, delete, test | ✅ |
-| [Workspace](/docs/api/workspace) | Settings, members, connectors, API keys | ✅ |
+| [Webhooks](/api/webhooks) | Register, list, delete, test | ✅ |
+| [Workspace](/api/workspace) | Settings, members, connectors, API keys | ✅ |
 
 ---
 
@@ -172,7 +172,7 @@ const result = await client.import.items(rows, crypto.randomUUID());
 
 ## Scopes quick reference
 
-See [Authentication](/docs/start/authentication) for the full scopes table.
+See [Authentication](/start/authentication) for the full scopes table.
 
 | Scope | Grants access to |
 |-------|----------------|

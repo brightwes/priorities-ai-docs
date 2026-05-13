@@ -143,6 +143,6 @@ Catchball:  working → proposed → returned → accepted → closed
 
 ## What's next
 
-- [Sessions API](/docs/api/sessions) — session lifecycle endpoints
-- [Cycles API](/docs/api/cycles) — cycle lifecycle endpoints
-- [Catchball API](/docs/api/catchball) — loop and proposal endpoints
+- [Sessions API](/api/sessions) — session lifecycle endpoints
+- [Cycles API](/api/cycles) — cycle lifecycle endpoints
+- [Catchball API](/api/catchball) — loop and proposal endpoints

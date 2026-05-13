@@ -178,5 +178,5 @@ DELETE /v1/outcome-drivers/sets/:setId/drivers/:driverId
 
 ## See also
 
-- [Export API](/docs/api/export) — bulk export outcome drivers as JSON or CSV
-- [Methodology Connections API](/docs/api/methodology-connections) — link drivers to prioritization items
+- [Export API](/api/clarity-tools/export) — bulk export outcome drivers as JSON or CSV
+- [Methodology Connections API](/api/clarity-tools/methodology-connections) — link drivers to prioritization items

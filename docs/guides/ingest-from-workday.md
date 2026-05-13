@@ -7,7 +7,7 @@ status: planned
 
 > **Note (Coming soon):** The Workday integration is planned and not yet shipped. This guide will be updated with working code examples when it ships.
 >
-> The pattern described below shows the intended flow. In the meantime, use the [items API](/docs/api/items) and [attributes API](/docs/api/items-attributes) to manually enter capacity data.
+> The pattern described below shows the intended flow. In the meantime, use the [items API](/api/items/items) and [attributes API](/api/items/items-attributes) to manually enter capacity data.
 
 ---
 

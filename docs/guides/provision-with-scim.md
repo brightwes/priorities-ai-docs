@@ -42,7 +42,7 @@ POST /v1/workspace/members/invite
 
 With SAML or OIDC SSO configured, users who sign in for the first time are automatically added to the workspace as observers. An admin then assigns the correct role in **Settings → Members**.
 
-[Configure Okta SSO →](/docs/integrations/identity/okta)
-[Configure Entra ID SSO →](/docs/integrations/identity/entra-id)
+[Configure Okta SSO →](/integrations/identity/okta)
+[Configure Entra ID SSO →](/integrations/identity/entra-id)
 
 [Contact us →] to be notified when SCIM ships.

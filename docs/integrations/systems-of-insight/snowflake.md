@@ -36,4 +36,4 @@ The export will use Priorities.ai webhooks — `session.published` and `priority
 
 Subscribe to `session.published` and `priority_list.approved` webhooks and write the event payloads to Snowflake using your existing ingestion infrastructure (Fivetran, Airbyte, a custom Lambda/Cloud Function, etc.).
 
-See [Subscribe to decisions guide](/docs/guides/subscribe-to-decisions) and [Guide: pipe decisions to Snowflake](/docs/guides/pipe-decisions-to-snowflake) *(planned)*.
+See [Subscribe to decisions guide](/guides/subscribe-to-decisions) and [Guide: pipe decisions to Snowflake](/guides/pipe-decisions-to-snowflake) *(planned)*.

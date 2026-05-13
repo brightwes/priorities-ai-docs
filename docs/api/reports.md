@@ -183,5 +183,5 @@ curl "$PAI_BASE/reports/items?include_attributes=true" \
 
 ## What's next
 
-- [Sessions API](/docs/api/sessions) — session lifecycle before the report is available
-- [Webhooks API](/docs/api/webhooks) — receive `session.published` in real time instead of polling
+- [Sessions API](/api/sessions) — session lifecycle before the report is available
+- [Webhooks API](/api/webhooks) — receive `session.published` in real time instead of polling

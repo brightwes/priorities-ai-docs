@@ -69,6 +69,6 @@ Convenience alias for `GET /v1/goals?strategy_id=:id`.
 
 ## What's next
 
-- [Objectives API](/docs/api/objectives) — concrete outcomes under a strategy
-- [Goals API](/docs/api/goals) — measurable metric targets
-- [Desired Outcomes API](/docs/api/desired-outcomes) — structured outcome briefs linked to objectives
+- [Objectives API](/api/objectives) — concrete outcomes under a strategy
+- [Goals API](/api/goals) — measurable metric targets
+- [Desired Outcomes API](/api/desired-outcomes) — structured outcome briefs linked to objectives

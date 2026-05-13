@@ -117,6 +117,6 @@ Removes an item from this objective's priority mappings.
 
 ## What's next
 
-- [Strategies API](/docs/api/strategies) — the parent strategy layer
-- [Goals API](/docs/api/goals) — measurable metric targets
-- [Desired Outcomes API](/docs/api/desired-outcomes) — connect outcomes to objectives
+- [Strategies API](/api/strategies) — the parent strategy layer
+- [Goals API](/api/goals) — measurable metric targets
+- [Desired Outcomes API](/api/desired-outcomes) — connect outcomes to objectives

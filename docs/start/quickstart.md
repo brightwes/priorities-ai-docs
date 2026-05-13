@@ -271,8 +271,8 @@ You now have a published priority list with full provenance — from item creati
 
 ## What's next
 
-- [Authentication and API keys](/docs/start/authentication) — scopes, key rotation, rate limits
-- [Core concepts](/docs/start/core-concepts) — understand the three primitives before building deeper
-- [Run a headless session](/docs/guides/run-headless-session) — a more complete end-to-end guide with criteria and catchball
-- [Subscribe to decision events](/docs/guides/subscribe-to-decisions) — react to `session.published` and `priority_list.approved` in real time
-- [Item relationships](/docs/api/items/items-relationships) — model dependencies, packages, and aggregations between items
+- [Authentication and API keys](/start/authentication) — scopes, key rotation, rate limits
+- [Core concepts](/start/core-concepts) — understand the three primitives before building deeper
+- [Run a headless session](/guides/run-headless-session) — a more complete end-to-end guide with criteria and catchball
+- [Subscribe to decision events](/guides/subscribe-to-decisions) — react to `session.published` and `priority_list.approved` in real time
+- [Item relationships](/api/items/items-relationships) — model dependencies, packages, and aggregations between items

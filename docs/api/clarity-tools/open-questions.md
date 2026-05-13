@@ -146,5 +146,5 @@ Clears the resolution and sets `status` back to `open`.
 
 ## See also
 
-- [Export API](/docs/api/export) — export questions as JSON or CSV
-- [Methodology Connections API](/docs/api/methodology-connections) — `open_question` is a valid source entity type
+- [Export API](/api/clarity-tools/export) — export questions as JSON or CSV
+- [Methodology Connections API](/api/clarity-tools/methodology-connections) — `open_question` is a valid source entity type

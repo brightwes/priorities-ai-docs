@@ -157,7 +157,7 @@ All webhook payloads use this envelope:
 }
 ```
 
-See [Webhook Payloads reference](/docs/reference/webhook-payloads) for full schemas of all events.
+See [Webhook Payloads reference](/reference/webhook-payloads) for full schemas of all events.
 
 ---
 
@@ -262,12 +262,12 @@ app.post('/webhook/priorities', express.raw({ type: 'application/json' }), (req,
 
 ## See full webhook payloads reference
 
-[Webhook payloads reference →](/docs/reference/webhook-payloads)
+[Webhook payloads reference →](/reference/webhook-payloads)
 
 ---
 
 ## What's next
 
-- [Guide: subscribe to decisions](/docs/guides/subscribe-to-decisions)
-- [Guide: integrate with Jira](/docs/guides/integrate-with-jira)
-- [Reference: webhook payloads](/docs/reference/webhook-payloads)
+- [Guide: subscribe to decisions](/guides/subscribe-to-decisions)
+- [Guide: integrate with Jira](/guides/integrate-with-jira)
+- [Reference: webhook payloads](/reference/webhook-payloads)

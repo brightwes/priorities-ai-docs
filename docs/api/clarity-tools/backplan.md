@@ -261,5 +261,5 @@ DELETE /v1/backplan/:id/milestones/:msId
 
 ## See also
 
-- [Export API](/docs/api/export) — export back plan documents as JSON or CSV
-- [Items API](/docs/api/items) — nodes can be linked to prioritization items via `item_id`
+- [Export API](/api/clarity-tools/export) — export back plan documents as JSON or CSV
+- [Items API](/api/items/items) — nodes can be linked to prioritization items via `item_id`

@@ -205,6 +205,6 @@ Items can hold frames of multiple types simultaneously. The primary frame (`is_p
 
 ## What's next
 
-- [Items API](/docs/api/items/items) — core CRUD and value proposals
-- [Item Relationships API](/docs/api/items/items-relationships) — dependencies, packages, aggregations
-- [Tracks API](/docs/api/tracks) — `GET /v1/tracks/:id/readiness` to check how attributes affect readiness
+- [Items API](/api/items/items) — core CRUD and value proposals
+- [Item Relationships API](/api/items/items-relationships) — dependencies, packages, aggregations
+- [Tracks API](/api/tracks) — `GET /v1/tracks/:id/readiness` to check how attributes affect readiness

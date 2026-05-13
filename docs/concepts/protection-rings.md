@@ -130,5 +130,5 @@ POST /v1/items/:id/admin-override
 
 ## What's next
 
-- [State machines](/docs/concepts/state-machines) — session and cycle state machines
-- [Item relationships](/docs/concepts/item-relationships) — the full relationship taxonomy
+- [State machines](/concepts/state-machines) — session and cycle state machines
+- [Item relationships](/concepts/item-relationships) — the full relationship taxonomy

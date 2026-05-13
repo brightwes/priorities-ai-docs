@@ -8,7 +8,7 @@ status: published
 
 # Item Relationships
 
-This page is the technical reference for the item relationship taxonomy. For the API, see [Item Relationships API](/docs/api/items/items-relationships).
+This page is the technical reference for the item relationship taxonomy. For the API, see [Item Relationships API](/api/items/items-relationships).
 
 ---
 
@@ -211,11 +211,11 @@ When both sides of a mirror pair exist on the same item pair, a warning fires. T
 
 ## Protection rings and relationship mutations
 
-See [Protection Rings](/docs/concepts/protection-rings) for the rules governing when relationship mutations are blocked.
+See [Protection Rings](/concepts/protection-rings) for the rules governing when relationship mutations are blocked.
 
 ---
 
 ## What's next
 
-- [Protection rings](/docs/concepts/protection-rings) — mutation governance in active contexts
-- [Item Relationships API](/docs/api/items/items-relationships) — endpoints and parameters
+- [Protection rings](/concepts/protection-rings) — mutation governance in active contexts
+- [Item Relationships API](/api/items/items-relationships) — endpoints and parameters

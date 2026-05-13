@@ -88,7 +88,7 @@ curl "$PAI_BASE/items/a1b2c3d4-.../lineage" \
 
 ### Lineage and relationships
 
-After any lineage event (`split`, `merge`, `supersede`, `retire`, or `fork`), all active relationships on the affected item(s) must be explicitly reviewed and remapped. Lineage does not auto-inherit relationships. See [Item Relationships API](/docs/api/items/items-relationships) for the dissolution sequence.
+After any lineage event (`split`, `merge`, `supersede`, `retire`, or `fork`), all active relationships on the affected item(s) must be explicitly reviewed and remapped. Lineage does not auto-inherit relationships. See [Item Relationships API](/api/items/items-relationships) for the dissolution sequence.
 
 ---
 
@@ -302,6 +302,6 @@ curl -X DELETE "$PAI_BASE/items/comments/comment-uuid-1" \
 
 ## What's next
 
-- [Item Classification API](/docs/api/items/items-classification) — frames, altitude, canonical frame
-- [Item Attributes API](/docs/api/items/items-attributes) — value proposals and scoring
-- [Item Relationships API](/docs/api/items/items-relationships) — lineage relationship propagation rules
+- [Item Classification API](/api/items/items-classification) — frames, altitude, canonical frame
+- [Item Attributes API](/api/items/items-attributes) — value proposals and scoring
+- [Item Relationships API](/api/items/items-relationships) — lineage relationship propagation rules

@@ -184,6 +184,6 @@ Key tools:
 
 ## What's next
 
-- [MCP integration reference](/docs/integrations/ai-agents/mcp) — full tool catalog
-- [Run a headless session guide](/docs/guides/run-headless-session) — the same flow via REST API
-- [Catchball API](/docs/api/catchball) — authority model for agent-submitted proposals
+- [MCP integration reference](/integrations/ai-agents/mcp) — full tool catalog
+- [Run a headless session guide](/guides/run-headless-session) — the same flow via REST API
+- [Catchball API](/api/catchball) — authority model for agent-submitted proposals

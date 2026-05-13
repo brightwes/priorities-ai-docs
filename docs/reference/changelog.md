@@ -75,4 +75,4 @@ These are on the roadmap. The `[Planned]` designation means the data is captured
 
 The API is at `/v1`. Non-breaking additions happen continuously. Breaking changes require a 6-month deprecation notice and a migration path before the `/v1` endpoint is removed or changed.
 
-See [API versioning](/docs/reference/api-versioning) for the full policy.
+See [API versioning](/reference/api-versioning) for the full policy.

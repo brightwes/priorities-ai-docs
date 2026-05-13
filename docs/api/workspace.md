@@ -233,5 +233,5 @@ Revocation is immediate and irreversible.
 
 ## What's next
 
-- [Authentication](/docs/start/authentication) — API key formats, scopes, and security
-- [Integrations](/docs/integrations/index) — per-connector setup guides
+- [Authentication](/start/authentication) — API key formats, scopes, and security
+- [Integrations](/integrations/) — per-connector setup guides

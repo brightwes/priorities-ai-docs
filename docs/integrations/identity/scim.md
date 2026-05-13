@@ -62,4 +62,4 @@ Provision users via:
 - **API:** `POST /v1/workspace/members/invite`
 - **SSO just-in-time provisioning:** Users who sign in via SAML/OIDC for the first time are automatically provisioned; an admin assigns their role
 
-[Guide: provision with SCIM →](/docs/guides/provision-with-scim) *(planned)*
+[Guide: provision with SCIM →](/guides/provision-with-scim) *(planned)*

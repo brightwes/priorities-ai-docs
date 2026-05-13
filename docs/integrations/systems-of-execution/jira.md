@@ -121,4 +121,4 @@ Each item in the published list generates a Jira issue with:
 
 ## Guide: full end-to-end integration
 
-[→ Integrate with Jira guide](/docs/guides/integrate-with-jira)
+[→ Integrate with Jira guide](/guides/integrate-with-jira)

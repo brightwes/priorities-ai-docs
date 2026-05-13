@@ -5,6 +5,8 @@ sidebar_label: Items API
 sidebar_position: 1
 audience: Developers
 status: published
+# `items/items.md` would otherwise share the same URL as the parent folder (`/api/items/`).
+slug: items
 ---
 
 # Items
@@ -592,14 +594,14 @@ Returns paginated audit events whose payload references this item. Useful for bu
 }
 ```
 
-For workspace-wide audit event queries (all actors, all items), see the [Audit Events API](/docs/api/events/audit-events).
+For workspace-wide audit event queries (all actors, all items), see the [Audit Events API](/api/events/audit-events).
 
 ---
 
 ## What's next
 
-- [Item Attributes API](/docs/api/items/items-attributes) — interpretive frames (problem, opportunity, risk, etc.)
-- [Item Relationships API](/docs/api/items/items-relationships) — dependencies, packages, aggregations
-- [Audit Events API](/docs/api/events/audit-events) — workspace-level audit log
-- [Tracks API](/docs/api/tracks) — how items enter a track's item pool for scoring
-- [Core concepts: items and their lifecycle](/docs/start/core-concepts)
+- [Item Attributes API](/api/items/items-attributes) — interpretive frames (problem, opportunity, risk, etc.)
+- [Item Relationships API](/api/items/items-relationships) — dependencies, packages, aggregations
+- [Audit Events API](/api/events/audit-events) — workspace-level audit log
+- [Tracks API](/api/tracks) — how items enter a track's item pool for scoring
+- [Core concepts: items and their lifecycle](/start/core-concepts)

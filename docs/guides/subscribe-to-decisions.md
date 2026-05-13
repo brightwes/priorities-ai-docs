@@ -143,7 +143,7 @@ You should see a `workspace.updated` test event arrive at your endpoint within a
 
 ## Step 5 — Publish a session to trigger the event
 
-If you completed the [quickstart](/docs/start/quickstart), publish the session you created:
+If you completed the [quickstart](/start/quickstart), publish the session you created:
 
 ```bash
 curl -s -X POST "$PAI_BASE/sessions/your-session-id/transition" \
@@ -230,7 +230,7 @@ app.post('/webhook/priorities', (req, res) => {
 
 ## What's next
 
-- [Webhook payloads reference](/docs/reference/webhook-payloads) — full payload schemas
-- [Webhooks API](/docs/api/webhooks) — manage registrations
-- [Integrate with Jira](/docs/guides/integrate-with-jira) — use decision events to create Jira epics
-- [Build a Slack notifier](/docs/guides/build-a-slack-notifier) — send priority updates to Slack channels
+- [Webhook payloads reference](/reference/webhook-payloads) — full payload schemas
+- [Webhooks API](/api/webhooks) — manage registrations
+- [Integrate with Jira](/guides/integrate-with-jira) — use decision events to create Jira epics
+- [Build a Slack notifier](/guides/build-a-slack-notifier) — send priority updates to Slack channels

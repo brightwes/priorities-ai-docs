@@ -9,7 +9,7 @@ status: published
 
 # Governance Events
 
-Governance events are the authoritative lifecycle record of major actions in the platform — cycle phase changes, session state transitions, catchball decisions, priority list approvals. They are distinct from [audit events](/docs/api/audit-events) (per-item forensic trail) and [decisions](/docs/api/decisions) (typed, human-readable records).
+Governance events are the authoritative lifecycle record of major actions in the platform — cycle phase changes, session state transitions, catchball decisions, priority list approvals. They are distinct from [audit events](/api/events/audit-events) (per-item forensic trail) and [decisions](/api/events/decisions) (typed, human-readable records).
 
 **Base path:** `/v1/governance-events`
 
@@ -74,6 +74,6 @@ curl "$PAI_BASE/governance-events?after=2026-04-11T00:00:00Z" \
 
 ## See also
 
-- [Decisions API](/docs/api/decisions) — major lifecycle events auto-generate decisions
-- [Audit Events API](/docs/api/audit-events) — per-item forensic trail
-- [Webhooks API](/docs/api/webhooks) — receive governance events in real time
+- [Decisions API](/api/events/decisions) — major lifecycle events auto-generate decisions
+- [Audit Events API](/api/events/audit-events) — per-item forensic trail
+- [Webhooks API](/api/webhooks) — receive governance events in real time

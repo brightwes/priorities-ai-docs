@@ -10,7 +10,7 @@ status: published
 
 Catchball is the bidirectional priority alignment mechanism that runs within every Cycle. It is how executive intent and team knowledge reach the decision together — not through unilateral authority at either end, but through a governed exchange.
 
-This page describes the technical model. For the conceptual overview, see [The Exchange](/platform/exchange).
+This page describes the technical model. For the conceptual overview, see [The Exchange](https://priorities.ai/platform/exchange/).
 
 ---
 
@@ -140,6 +140,6 @@ POST /v1/catchball/proposals/:id/accept
 
 ## What's next
 
-- [Catchball API](/docs/api/catchball) — full endpoint reference
-- [Decision classes](/docs/concepts/decision-classes) — `convergence` decision class explained
-- [Governance vs audit events](/docs/concepts/governance-vs-audit-events) — what gets recorded when a loop closes
+- [Catchball API](/api/catchball) — full endpoint reference
+- [Decision classes](/concepts/decision-classes) — `convergence` decision class explained
+- [Governance vs audit events](/concepts/governance-vs-audit-events) — what gets recorded when a loop closes

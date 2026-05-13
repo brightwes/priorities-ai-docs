@@ -134,7 +134,7 @@ func main() {
 
 Use the REST API directly. All examples in these docs use `curl` to ensure they work with no SDK dependency. The API surface is stable — code you write against `v1` today will not need to change when the SDKs ship.
 
-[Quickstart →](/docs/start/quickstart)   [Authentication →](/docs/start/authentication)
+[Quickstart →](/start/quickstart)   [Authentication →](/start/authentication)
 
 ---
 

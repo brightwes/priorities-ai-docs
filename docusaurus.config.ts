@@ -9,6 +9,7 @@ const config: Config = {
 
   url: 'https://priorities-ai-docs.vercel.app',
   baseUrl: '/',
+  trailingSlash: true,
 
   organizationName: 'priorities-ai',
   projectName: 'priorities-ai',
@@ -106,7 +107,7 @@ const config: Config = {
           title: 'API Reference',
           items: [
             { label: 'Overview', to: '/api' },
-            { label: 'Items', to: '/api/items' },
+            { label: 'Items', to: '/api/items/items' },
             { label: 'Sessions', to: '/api/sessions' },
             { label: 'Webhooks', to: '/api/webhooks' },
           ],

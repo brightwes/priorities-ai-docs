@@ -157,14 +157,14 @@ All API requests use workspace-scoped Bearer API keys. Keys carry explicit scope
 Authorization: Bearer pk_live_<64 hex chars>
 ```
 
-See [Authentication](/docs/start/authentication) for key formats, scopes reference, and key rotation.
+See [Authentication](/start/authentication) for key formats, scopes reference, and key rotation.
 
 ---
 
 ## What's next
 
-- [Authentication](/docs/start/authentication) — key formats, scopes, rate limits
-- [Item relationships in depth](/docs/concepts/item-relationships) — the full taxonomy and mutation rules
-- [Comparability and tracks](/docs/concepts/comparability-and-tracks) — Track Cells explained in detail
-- [State machines](/docs/concepts/state-machines) — all four orthogonal state machines
-- [Decision classes](/docs/concepts/decision-classes) — the typed decision registry
+- [Authentication](/start/authentication) — key formats, scopes, rate limits
+- [Item relationships in depth](/concepts/item-relationships) — the full taxonomy and mutation rules
+- [Comparability and tracks](/concepts/comparability-and-tracks) — Track Cells explained in detail
+- [State machines](/concepts/state-machines) — all four orthogonal state machines
+- [Decision classes](/concepts/decision-classes) — the typed decision registry

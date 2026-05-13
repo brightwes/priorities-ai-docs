@@ -87,7 +87,7 @@ Priorities.ai captures decision rationale, governance events, and priority outpu
 
 ## What's next
 
-- [Comparability and tracks](/docs/concepts/comparability-and-tracks) — Track Cells and the comparison geometry
-- [Catchball and authority](/docs/concepts/catchball-and-authority) — The Exchange as a developer API
-- [State machines](/docs/concepts/state-machines) — Session, Cycle, Catchball Loop state machines
-- [Quickstart](/docs/start/quickstart) — build a working integration in 10 minutes
+- [Comparability and tracks](/concepts/comparability-and-tracks) — Track Cells and the comparison geometry
+- [Catchball and authority](/concepts/catchball-and-authority) — The Exchange as a developer API
+- [State machines](/concepts/state-machines) — Session, Cycle, Catchball Loop state machines
+- [Quickstart](/start/quickstart) — build a working integration in 10 minutes

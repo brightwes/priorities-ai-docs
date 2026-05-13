@@ -63,5 +63,5 @@ curl "$PAI_STAGING/../health"
 
 ## What's next
 
-- [SDKs](/docs/start/sdks) — planned TypeScript, Python, Go SDKs (also planned)
-- [Quickstart](/docs/start/quickstart) — build a working integration using the live API
+- [SDKs](/start/sdks) — planned TypeScript, Python, Go SDKs (also planned)
+- [Quickstart](/start/quickstart) — build a working integration using the live API

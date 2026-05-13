@@ -180,5 +180,5 @@ An unexpected server-side error. These are logged and monitored.
 
 ## What's next
 
-- [Rate limits reference](/docs/reference/rate-limits) — window size, headers, and backoff guidance
-- [Webhook payloads reference](/docs/reference/webhook-payloads)
+- [Rate limits reference](/reference/rate-limits) — window size, headers, and backoff guidance
+- [Webhook payloads reference](/reference/webhook-payloads)

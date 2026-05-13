@@ -51,4 +51,4 @@ Accept: text/csv
 
 [Contact us →] to be notified when the Workday integration ships.
 
-[Guide: ingest from Workday →](/docs/guides/ingest-from-workday) *(planned)*
+[Guide: ingest from Workday →](/guides/ingest-from-workday) *(planned)*

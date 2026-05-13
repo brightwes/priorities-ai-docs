@@ -178,5 +178,5 @@ curl -s -X POST "$PAI_BASE/webhooks" \
 
 ## What's next
 
-- [Subscribe to decisions](/docs/guides/subscribe-to-decisions) — full webhook handling guide
-- [Integrate with Jira](/docs/guides/integrate-with-jira) — create Jira epics from the same events
+- [Subscribe to decisions](/guides/subscribe-to-decisions) — full webhook handling guide
+- [Integrate with Jira](/guides/integrate-with-jira) — create Jira epics from the same events

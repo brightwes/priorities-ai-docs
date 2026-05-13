@@ -127,6 +127,6 @@ When `?format=csv` (or `Accept: text/csv`) is requested:
 
 ## See also
 
-- [Items API](/docs/api/items) — CRUD for individual items
-- [Outcome Drivers API](/docs/api/outcome-drivers) — driver and set CRUD
-- [Back Plans API](/docs/api/backplan) — back plan CRUD
+- [Items API](/api/items/items) — CRUD for individual items
+- [Outcome Drivers API](/api/clarity-tools/outcome-drivers) — driver and set CRUD
+- [Back Plans API](/api/clarity-tools/backplan) — back plan CRUD

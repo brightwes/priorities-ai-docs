@@ -297,6 +297,6 @@ curl -s -X POST "$PAI_BASE/catchball/proposals" \
 
 ## What's next
 
-- [Subscribe to decisions](/docs/guides/subscribe-to-decisions) — react to this session's publication event
-- [Integrate with Jira](/docs/guides/integrate-with-jira) — sync the ranked output to Jira epics
-- [Catchball API](/docs/api/catchball) — full authority exchange API
+- [Subscribe to decisions](/guides/subscribe-to-decisions) — react to this session's publication event
+- [Integrate with Jira](/guides/integrate-with-jira) — sync the ranked output to Jira epics
+- [Catchball API](/api/catchball) — full authority exchange API

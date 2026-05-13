@@ -238,6 +238,6 @@ The most-restrictive-ring rule applies when an item participates in multiple con
 
 ## What's next
 
-- [Item frames](/docs/api/items/items-attributes) — interpretive frames and altitude
-- [Concepts: item relationships in depth](/docs/concepts/item-relationships) — full taxonomy with examples and gate engine rules
-- [Concepts: protection rings](/docs/concepts/protection-rings) — mutation governance
+- [Item frames](/api/items/items-attributes) — interpretive frames and altitude
+- [Concepts: item relationships in depth](/concepts/item-relationships) — full taxonomy with examples and gate engine rules
+- [Concepts: protection rings](/concepts/protection-rings) — mutation governance

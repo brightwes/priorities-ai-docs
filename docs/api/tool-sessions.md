@@ -395,6 +395,6 @@ When a facilitator adjusts the aggregate result, the override is stored in `faci
 
 ## What's next
 
-- [Sessions](/docs/api/sessions) — publish the session after tool sessions are finalized
-- [Catchball](/docs/api/catchball) — submit proposals based on session results
-- [Reports](/docs/api/reports) — pull the full session report with provenance after publication
+- [Sessions](/api/sessions) — publish the session after tool sessions are finalized
+- [Catchball](/api/catchball) — submit proposals based on session results
+- [Reports](/api/reports) — pull the full session report with provenance after publication

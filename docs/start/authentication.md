@@ -197,6 +197,6 @@ Returns key metadata only — `key_hash` is never returned. Only the display pre
 
 ## What's next
 
-- [Quickstart](/docs/start/quickstart) — use your key to build a complete integration
-- [Workspace API](/docs/api/workspace) — full key management API reference
-- [Error codes](/docs/reference/errors) — `UNAUTHORIZED` and `FORBIDDEN` explained
+- [Quickstart](/start/quickstart) — use your key to build a complete integration
+- [Workspace API](/api/workspace) — full key management API reference
+- [Error codes](/reference/errors) — `UNAUTHORIZED` and `FORBIDDEN` explained

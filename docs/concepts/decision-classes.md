@@ -120,6 +120,6 @@ These transitions do not alter the historical fact of the decision. They annotat
 
 ## What's next
 
-- [Governance vs audit events](/docs/concepts/governance-vs-audit-events) — how decisions relate to the two event tables
-- [Decisions API](/docs/api/decisions) — query endpoints (planned)
-- [Subscribe to decisions guide](/docs/guides/subscribe-to-decisions) — webhook-based real-time integration
+- [Governance vs audit events](/concepts/governance-vs-audit-events) — how decisions relate to the two event tables
+- [Decisions API](/api/events/decisions) — query endpoints (planned)
+- [Subscribe to decisions guide](/guides/subscribe-to-decisions) — webhook-based real-time integration

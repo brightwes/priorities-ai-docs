@@ -5,7 +5,7 @@ audience: Developers
 status: planned
 ---
 
-> **Note (Coming soon):** The Databricks integration is planned. See [Snowflake](/docs/integrations/systems-of-insight/snowflake) for the same pattern.
+> **Note (Coming soon):** The Databricks integration is planned. See [Snowflake](/integrations/systems-of-insight/snowflake) for the same pattern.
 
 ---
 
@@ -18,4 +18,4 @@ Export decision log data to Databricks for analytical workloads, AI/ML pipelines
 
 In the meantime, subscribe to `priority_list.approved` webhooks and write payloads to your Databricks landing zone.
 
-[Subscribe to decisions guide →](/docs/guides/subscribe-to-decisions)
+[Subscribe to decisions guide →](/guides/subscribe-to-decisions)

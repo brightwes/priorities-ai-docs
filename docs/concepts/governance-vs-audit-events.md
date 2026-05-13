@@ -129,11 +129,11 @@ The link is always from decision → governance event. A decision can exist with
 >
 > **Available today:** Webhook events deliver `session.published`, `cycle.transition`, and `priority_list.approved` — which correspond to the most important governance events. Subscribe to these for real-time integration without waiting for the query endpoints.
 
-[Subscribe to decision events →](/docs/guides/subscribe-to-decisions)   [Webhooks API →](/docs/api/webhooks)
+[Subscribe to decision events →](/guides/subscribe-to-decisions)   [Webhooks API →](/api/webhooks)
 
 ---
 
 ## What's next
 
-- [Decision classes](/docs/concepts/decision-classes) — the typed decision vocabulary
-- [State machines](/docs/concepts/state-machines) — what events get recorded on each state transition
+- [Decision classes](/concepts/decision-classes) — the typed decision vocabulary
+- [State machines](/concepts/state-machines) — what events get recorded on each state transition

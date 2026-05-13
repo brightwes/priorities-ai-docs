@@ -65,4 +65,4 @@ Payloads without `schema_version` are implicitly `"1"`.
 
 ## What's next
 
-- [Changelog](/docs/reference/changelog) — all API changes dated
+- [Changelog](/reference/changelog) — all API changes dated

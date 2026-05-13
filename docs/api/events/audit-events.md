@@ -11,7 +11,7 @@ status: published
 
 Audit events are the workspace-level forensic trail — every low-level event that occurred, in sequence. They answer compliance questions: "What changed on this item, by whom, and when?"
 
-This is distinct from [governance events](/docs/api/governance-events) (major lifecycle actions on cycles and sessions) and from [decisions](/docs/api/decisions) (typed, human-readable records).
+This is distinct from [governance events](/api/events/governance-events) (major lifecycle actions on cycles and sessions) and from [decisions](/api/events/decisions) (typed, human-readable records).
 
 **Base path:** `/v1/audit-events`
 
@@ -86,6 +86,6 @@ curl "$PAI_BASE/items/<item-uuid>/audit-events" \
 
 ## See also
 
-- [Governance Events API](/docs/api/governance-events) — major lifecycle actions on cycles and sessions
-- [Decisions API](/docs/api/decisions) — typed, human-readable decision log
-- [Items API](/docs/api/items) — item CRUD and relationships
+- [Governance Events API](/api/events/governance-events) — major lifecycle actions on cycles and sessions
+- [Decisions API](/api/events/decisions) — typed, human-readable decision log
+- [Items API](/api/items/items) — item CRUD and relationships

@@ -266,12 +266,12 @@ Classification changes on items in protected contexts (active sessions or tracks
 | Ring 2 | In track, not in active session | Requires approval |
 | Ring 1 | In active session | Admin approval + session disposition declaration required |
 
-See [Protection Rings](/docs/concepts/protection-rings) for details.
+See [Protection Rings](/concepts/protection-rings) for details.
 
 ---
 
 ## What's next
 
-- [Item Attributes API](/docs/api/items/items-attributes) — value proposals and scoring
-- [Item Relationships API](/docs/api/items/items-relationships) — dependencies, packages, aggregations
-- [Item Activity API](/docs/api/items/items-activity) — provenance, history, and discussion
+- [Item Attributes API](/api/items/items-attributes) — value proposals and scoring
+- [Item Relationships API](/api/items/items-relationships) — dependencies, packages, aggregations
+- [Item Activity API](/api/items/items-activity) — provenance, history, and discussion

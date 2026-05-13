@@ -120,5 +120,5 @@ DELETE /v1/methodology-connections/:id
 
 ## See also
 
-- [Export API](/docs/api/export) — export connections as JSON or CSV
-- [Items API](/docs/api/items) — relationships between items use a separate endpoint
+- [Export API](/api/clarity-tools/export) — export connections as JSON or CSV
+- [Items API](/api/items/items) — relationships between items use a separate endpoint
